@@ -10,10 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    npm i
+    npm run lint
+    npm test
+    npm run build
+  displayName: 'Build, test ReactTS client'
+  name: 'ReactTSBuild'
+  workingDirectory: 'calendar-reactts'
+  failOnStderr: false
