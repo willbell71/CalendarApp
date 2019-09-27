@@ -38,7 +38,7 @@ module.exports = {
     'react/require-default-props': 'error',
     'react/react-in-jsx-scope': 'error',
     'react/prop-types': 'error',
-    'react/prefer-stateless-function': 'warn',
+    // 'react/prefer-stateless-function': 'warn',
     'react/prefer-read-only-props': 'error',
     'react/no-unused-state': 'error',
     'react/no-unused-prop-types': 'error',
