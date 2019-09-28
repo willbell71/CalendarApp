@@ -10,15 +10,58 @@ let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, TitleBar>;
 beforeEach(() => {
   props = {
-    date: new Date()
+    date: new Date(),
+    showDate: false,
+    showMonth: false,
+    showYear: false,
+    showDay: false
   };
 
   wrapper = enzyme.shallow(<TitleBar {...props}/>);
 });
 afterEach(() => jest.restoreAllMocks());
 
-describe('NavBar', () => {
+describe('TitleBar', () => {
   it('should render', () => {
     expect(wrapper.find('h1').length).toEqual(1);
+  });
+
+  it('shouldnt render any elements', () => {
+    expect(wrapper.find('DayOfMonth').length).toEqual(0);
+    expect(wrapper.find('MonthOfYear').length).toEqual(0);
+    expect(wrapper.find('Year').length).toEqual(0);
+    expect(wrapper.find('DayOfWeek').length).toEqual(0);
+  });
+
+  it('should render date', () => {
+    wrapper.setProps({
+      showDate: true
+    });
+
+    expect(wrapper.find('DayOfMonth').length).toEqual(1);
+  });
+
+  it('should render month', () => {
+    wrapper.setProps({
+      showMonth: true
+    });
+
+    expect(wrapper.find('MonthOfYear').length).toEqual(1);
+  });
+
+  it('should render year', () => {
+    wrapper.setProps({
+      showYear: true
+    });
+
+    expect(wrapper.find('Year').length).toEqual(1);
+  });
+
+  it('should render day', () => {
+    wrapper.setProps({
+      showDay: true
+    });
+
+    expect(wrapper.find('DayOfWeek').length).toEqual(1);
   });
 });

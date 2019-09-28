@@ -4,6 +4,7 @@ import * as reactDOM from 'react-dom';
 import { NavBar } from './shared/nav-bar/nav-bar';
 
 import './styles.scss';
+import { TitleBar } from './shared/title-bar/title-bar';
 
 /**
  * App component.
@@ -15,7 +16,16 @@ class App extends React.Component {
    */
   public render(): JSX.Element {
     return (
-      <NavBar/>
+      <>
+        <NavBar/>
+        <TitleBar
+          date={ new Date() }
+          showDate={ true }
+          showMonth={ true }
+          showYear={ true }
+          showDay={ true }
+        />
+      </>
     );
   }
 }
