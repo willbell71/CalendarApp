@@ -24,6 +24,9 @@ class App extends React.Component {
           showMonth={ true }
           showYear={ true }
           showDay={ true }
+          prev={ () => {} }
+          today={ () => {} }
+          next={ () => {} }
         />
       </>
     );
