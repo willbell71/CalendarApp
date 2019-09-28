@@ -45,7 +45,7 @@ module.exports = {
     'react/no-multi-comp': 'error',
     'react/no-direct-mutation-state': 'error',
     'react/no-deprecated': 'error',
-    'react/no-array-index-key': 'error',
+    // 'react/no-array-index-key': 'error',
     'react/default-props-match-prop-types': 'error',
     'react/no-access-state-in-setstate': 'error',
     'react/jsx-uses-react': 'error',

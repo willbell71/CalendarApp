@@ -10,7 +10,7 @@ let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, TitleBar>;
 beforeEach(() => {
   props = {
-    date: new Date(),
+    date: new Date(2019, 8, 28),
     showDate: false,
     showMonth: false,
     showYear: false,
