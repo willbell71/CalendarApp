@@ -11,7 +11,8 @@ $color-white: #FFFFFF;
   padding: 8px;
   transition-duration: 300ms;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-gray-700;
   }
 }
