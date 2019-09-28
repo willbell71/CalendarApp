@@ -5,6 +5,7 @@ import { NavBar } from './shared/nav-bar/nav-bar';
 
 import './styles.scss';
 import { TitleBar } from './shared/title-bar/title-bar';
+import { YearPage } from './year-page/year-page';
 
 /**
  * App component.
@@ -28,6 +29,8 @@ class App extends React.Component {
           today={ () => {} }
           next={ () => {} }
         />
+
+        <YearPage date={ new Date() }/>
       </>
     );
   }
