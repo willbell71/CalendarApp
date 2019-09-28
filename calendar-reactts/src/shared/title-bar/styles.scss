@@ -1,7 +1,21 @@
+.title-bar {
+  display: flex;
+  width: 100%;
+}
+
 .title-bar__element {
   margin-right: 8px;
 }
 
 .title-bar__element--faint {
   font-weight: 300;
+}
+
+.title-bar__spacer {
+  flex: 1;
+}
+
+.title-bar__controls {
+  align-items: center;
+  display: flex;
 }

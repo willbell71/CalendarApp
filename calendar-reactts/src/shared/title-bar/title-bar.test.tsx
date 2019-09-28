@@ -14,7 +14,10 @@ beforeEach(() => {
     showDate: false,
     showMonth: false,
     showYear: false,
-    showDay: false
+    showDay: false,
+    prev: jest.fn(),
+    today: jest.fn(),
+    next: jest.fn()
   };
 
   wrapper = enzyme.shallow(<TitleBar {...props}/>);
@@ -63,5 +66,27 @@ describe('TitleBar', () => {
     });
 
     expect(wrapper.find('DayOfWeek').length).toEqual(1);
+  });
+
+  it('should render DateControl', () => {
+    expect(wrapper.find('DateControl').length).toEqual(1);
+  });
+
+  it('should invoke prev prop on DateControl prev event', () => {
+    (wrapper.find('DateControl').prop('prev') as () => void)();
+
+    expect(props.prev).toHaveBeenCalledTimes(1);
+  });
+
+  it('should invoke today prop on DateControl today event', () => {
+    (wrapper.find('DateControl').prop('today') as () => void)();
+
+    expect(props.today).toHaveBeenCalledTimes(1);
+  });
+
+  it('should invoke next prop on DateControl next event', () => {
+    (wrapper.find('DateControl').prop('next') as () => void)();
+
+    expect(props.next).toHaveBeenCalledTimes(1);
   });
 });
