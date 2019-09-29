@@ -7,19 +7,11 @@ import './styles.scss';
 
 /**
  * Component props.
- * @property {() => void} day - day click handler.
- * @property {() => void} week - week click handler.
- * @property {() => void} month - month click handler.
- * @property {() => void} year - year click handler.
  * @property {() => void} calendars - calendars click handler.
  * @property {() => void} add - add calendar click handler.
  * @property {(term: string) => void} search - search handler.
  */
 export type TProps = {
-  day: () => void;
-  week: () => void;
-  month: () => void;
-  year: () => void;
   calendars: () => void;
   add: () => void;
   search: (term: string) => void;
@@ -41,12 +33,7 @@ export class NavBar extends React.Component<TProps> {
           <button onClick={ this.props.add } className="button button--big">+</button>
         </div>
         <div className="nav-bar__spacer"/>
-        <Navigation
-          day={ this.props.day }
-          week={ this.props.week }
-          month={ this.props.month }
-          year={ this.props.year }
-        />
+        <Navigation/>
         <div className="nav-bar__spacer"/>
         <Search search={ this.props.search }/>
       </header>

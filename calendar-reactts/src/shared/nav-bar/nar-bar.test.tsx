@@ -10,10 +10,6 @@ let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, NavBar>;
 beforeEach(() => {
   props = {
-    day: jest.fn(),
-    week: jest.fn(),
-    month: jest.fn(),
-    year: jest.fn(),
     calendars: jest.fn(),
     add: jest.fn(),
     search: jest.fn()
@@ -41,30 +37,6 @@ describe('NavBar', () => {
     wrapper.find('button').at(1).simulate('click');
 
     expect(props.add).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call day handler in response to navigation day event', () => {
-    (wrapper.find('Navigation').prop('day') as () => void)();
-
-    expect(props.day).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call week handler in response to navigation week event', () => {
-    (wrapper.find('Navigation').prop('week') as () => void)();
-
-    expect(props.week).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call month handler in response to navigation month event', () => {
-    (wrapper.find('Navigation').prop('month') as () => void)();
-
-    expect(props.month).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call year handler in response to navigation year event', () => {
-    (wrapper.find('Navigation').prop('year') as () => void)();
-
-    expect(props.year).toHaveBeenCalledTimes(1);
   });
 
   it('should call search handler in response to search event', () => {

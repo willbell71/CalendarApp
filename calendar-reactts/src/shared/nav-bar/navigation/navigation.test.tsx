@@ -2,50 +2,34 @@ import * as React from 'react';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
-import { Navigation, TProps } from './navigation';
+import { Navigation } from './navigation';
 
 enzyme.configure({ adapter: new Adapter() });
 
-let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, Navigation>;
 beforeEach(() => {
-  props = {
-    day: jest.fn(),
-    week: jest.fn(),
-    month: jest.fn(),
-    year: jest.fn()
-  };
-
-  wrapper = enzyme.shallow(<Navigation {...props}/>);
+  wrapper = enzyme.shallow(<Navigation/>);
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('Navigation', () => {
   it('should render', () => {
-    expect(wrapper.find('button').length).toEqual(4);
+    expect(wrapper.find('Link').length).toEqual(4);
   });
 
-  it('should call day handler if day button is clicked', () => {
-    wrapper.find('button').at(0).simulate('click');
-
-    expect(props.day).toHaveBeenCalledTimes(1);
+  it('should link to day', () => {
+    expect(wrapper.find('Link').at(0).prop('to')).toEqual('/day');
   });
 
-  it('should call week handler if week button is clicked', () => {
-    wrapper.find('button').at(1).simulate('click');
-
-    expect(props.week).toHaveBeenCalledTimes(1);
+  it('should link to week', () => {
+    expect(wrapper.find('Link').at(1).prop('to')).toEqual('/week');
   });
 
-  it('should call month handler if month button is clicked', () => {
-    wrapper.find('button').at(2).simulate('click');
-
-    expect(props.month).toHaveBeenCalledTimes(1);
+  it('should link to month', () => {
+    expect(wrapper.find('Link').at(2).prop('to')).toEqual('/month');
   });
 
-  it('should call year handler if year button is clicked', () => {
-    wrapper.find('button').at(3).simulate('click');
-
-    expect(props.year).toHaveBeenCalledTimes(1);
+  it('should link to year', () => {
+    expect(wrapper.find('Link').at(3).prop('to')).toEqual('/year');
   });
 });
