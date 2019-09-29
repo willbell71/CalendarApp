@@ -42,7 +42,7 @@ export class TitleBar extends React.Component<TProps> {
     return (
       <div className="title-bar">
         <div>
-          <h1>
+          <h1 className="title-bar__date">
             { this.props.showDate && <span className="title-bar__element">
               <DayOfMonth date={ this.props.date }/>
             </span> }

@@ -5,8 +5,8 @@ import './styles.scss';
 /**
  * Component properties.
  * @property {() => void} prev - previous click handler.
- * @property {() => void} today - previous click handler.
- * @property {() => void} next - previous click handler.
+ * @property {() => void} today - today click handler.
+ * @property {() => void} next - next click handler.
  */
 export type TProps = {
   prev: () => void;
@@ -25,9 +25,9 @@ export class DateControl extends React.Component<TProps> {
   public render(): JSX.Element {
     return (
       <div>
-        <button className="date-control__button" onClick={ this.props.prev }>&lt;</button>
-        <button className="date-control__button" onClick={ this.props.today }>Today</button>
-        <button className="date-control__button" onClick={ this.props.next }>&gt;</button>
+        <button className="button" onClick={ this.props.prev }>&lt;</button>
+        <button className="button" onClick={ this.props.today }>Today</button>
+        <button className="button" onClick={ this.props.next }>&gt;</button>
       </div>
     );
   }

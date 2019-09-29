@@ -18,7 +18,15 @@ class App extends React.Component {
   public render(): JSX.Element {
     return (
       <>
-        <NavBar/>
+        <NavBar
+          day={ () => {} }
+          week={ () => {} }
+          month={ () => {} }
+          year={ () => {} }
+          calendars={ () => {} }
+          add={ () => {} }
+          search={ () => {} }
+        />
         <TitleBar
           date={ new Date() }
           showDate={ true }
