@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.title-bar__date {
+  @media screen and (max-width: 600px) {
+    font-size: 1.6rem;
+  }
+}
+
 .title-bar__element {
   margin-right: 8px;
 }

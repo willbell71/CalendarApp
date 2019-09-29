@@ -1,6 +1,12 @@
 $color-blue-900: #2A4365;
 
 .nav-bar {
+  align-items: center;
   background: $color-blue-900;
-  height: 64px;
+  display: flex;
+  padding: 8px 16px;
+}
+
+.nav-bar__spacer {
+  flex: 1;
 }
