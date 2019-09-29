@@ -1,28 +1,81 @@
 import * as React from 'react';
 import * as reactDOM from 'react-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
+import { DayPage } from './day-page/day-page';
+import { MonthPage } from './month-page/month-page';
 import { NavBar } from './shared/nav-bar/nav-bar';
+import { TitleBar } from './shared/title-bar/title-bar';
+import { WeekPage } from './week-page/week-page';
+import { YearPage } from './year-page/year-page';
 
 import './styles.scss';
-import { TitleBar } from './shared/title-bar/title-bar';
-import { YearPage } from './year-page/year-page';
+
+/**
+ * Component state.
+ * @property {Date} date - date current visible in calendar.
+ */
+type TState = {
+  date: Date;
+};
 
 /**
  * App component.
  */
-class App extends React.Component {
+class App extends React.Component<{}, TState> {
+  // @member {TState} state - component state.
+  public state: TState = {
+    date: new Date()
+  };
+
+  /**
+   * Render day component.
+   * @return {JSX.Element} component render.
+   */
+  private dayPageComponent: () => JSX.Element = () => {
+    return (
+      <DayPage date={ this.state.date }/>
+    );
+  }
+
+  /**
+   * Render week component.
+   * @return {JSX.Element} component render.
+   */
+  private weekPageComponent: () => JSX.Element = () => {
+    return (
+      <WeekPage date={ this.state.date }/>
+    );
+  }
+
+  /**
+   * Render month component.
+   * @return {JSX.Element} component render.
+   */
+  private monthPageComponent: () => JSX.Element = () => {
+    return (
+      <MonthPage date={ this.state.date }/>
+    );
+  }
+
+  /**
+   * Render year component.
+   * @return {JSX.Element} component render.
+   */
+  private yearPageComponent: () => JSX.Element = () => {
+    return (
+      <YearPage date={ this.state.date }/>
+    );
+  }
+
   /**
    * Render.
    * @return {JSX.Element} component render.
    */
   public render(): JSX.Element {
     return (
-      <>
+      <BrowserRouter>
         <NavBar
-          day={ () => {} }
-          week={ () => {} }
-          month={ () => {} }
-          year={ () => {} }
           calendars={ () => {} }
           add={ () => {} }
           search={ () => {} }
@@ -39,9 +92,15 @@ class App extends React.Component {
             next={ () => {} }
           />
 
-          <YearPage date={ new Date() }/>
+          <Switch>
+            <Route path="/day" exact component={this.dayPageComponent}/>
+            <Route path="/week" component={this.weekPageComponent}/>
+            <Route path="/month" component={this.monthPageComponent}/>
+            <Route path="/year" component={this.yearPageComponent}/>
+            <Redirect from="*" to="/year"/>
+          </Switch>
         </main>
-      </>
+      </BrowserRouter>
     );
   }
 }
