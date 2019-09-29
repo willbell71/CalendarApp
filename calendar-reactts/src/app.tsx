@@ -27,18 +27,20 @@ class App extends React.Component {
           add={ () => {} }
           search={ () => {} }
         />
-        <TitleBar
-          date={ new Date() }
-          showDate={ true }
-          showMonth={ true }
-          showYear={ true }
-          showDay={ true }
-          prev={ () => {} }
-          today={ () => {} }
-          next={ () => {} }
-        />
+        <main className="app__container">
+          <TitleBar
+            date={ new Date() }
+            showDate={ true }
+            showMonth={ true }
+            showYear={ true }
+            showDay={ true }
+            prev={ () => {} }
+            today={ () => {} }
+            next={ () => {} }
+          />
 
-        <YearPage date={ new Date() }/>
+          <YearPage date={ new Date() }/>
+        </main>
       </>
     );
   }
