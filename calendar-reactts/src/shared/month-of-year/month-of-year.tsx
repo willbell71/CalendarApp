@@ -1,10 +1,14 @@
 import * as React from 'react';
 
+import { ICalendarService } from '../../services/calendar/icalendar-service';
+
 /**
  * Component properties.
+ * @property {ICalendarService} calendarService - calendar service.
  * @property {Date} data - date to display.
  */
 export type TProps = {
+  calendarService: ICalendarService;
   date: Date;
 };
 
@@ -17,24 +21,8 @@ export class MonthOfYear extends React.Component<TProps> {
    * @return {JSX.Element} component rendner.
    */
   public render(): JSX.Element {
-    // list of months of the year
-    const months: string[] = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ];
-
     return (
-      <>{ months[this.props.date.getMonth()] }</>
+      <>{ this.props.calendarService.getMonthName(this.props.date.getMonth()) }</>
     );
   }
 }

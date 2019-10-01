@@ -1,12 +1,16 @@
 import * as React from 'react';
 
+import { ICalendarService } from '../../services/calendar/icalendar-service';
+
 import './styles.scss';
 
 /**
  * Component properties.
+ * @property {ICalendarService} calendarService - calendar service.
  * @property {Date} data - date to display.
  */
 export type TProps = {
+  calendarService: ICalendarService;
   date: Date;
 };
 
@@ -19,20 +23,9 @@ export class Month extends React.Component<TProps> {
    * @return {JSX.Element} component rendner.
    */
   public render(): JSX.Element {
-    const days: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    const calendarDate: Date = this.props.calendarService.getStartOfMonthGridDate(this.props.date);
 
-    // get the start of the month
-    const startOfMonth: Date = new Date(this.props.date.getFullYear(), this.props.date.getMonth(), 1);
-    // rewind to put monday at start of week
-    let dayOfWeek: number = startOfMonth.getDay();
-    if (!dayOfWeek) {
-      dayOfWeek = 7;
-    }
-    dayOfWeek--;
-
-    // build first date visible in calendar
-    const calendarDate: Date = new Date(this.props.date.getFullYear(), this.props.date.getMonth(), 1 - dayOfWeek);
-
+    const days: string[] = this.props.calendarService.getDayColumnTitle();
     const dates: string[] = [...days, ...days, ...days, ...days, ...days, ...days];
 
     return (

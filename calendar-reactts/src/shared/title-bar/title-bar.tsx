@@ -3,6 +3,7 @@ import * as React from 'react';
 import { DateControl } from '../date-control/date-control';
 import { DayOfMonth } from '../day-of-month/day-of-month';
 import { DayOfWeek } from '../day-of-week/day-of-week';
+import { ICalendarService } from '../../services/calendar/icalendar-service';
 import { MonthOfYear } from '../month-of-year/month-of-year';
 import { Year } from '../year/year';
 
@@ -10,6 +11,7 @@ import './styles.scss';
 
 /**
  * Component properties.
+ * @property {ICalendarService} calendarService - calendar service.
  * @property {Date} data - date to display.
  * @property {boolean} showDate? - show the date.
  * @property {boolean} showMonth? - show the month.
@@ -20,6 +22,7 @@ import './styles.scss';
  * @property {() => void} next - previous date click handler.
  */
 export type TProps = {
+  calendarService: ICalendarService;
   date: Date;
   showDate?: boolean;
   showMonth?: boolean;
@@ -47,7 +50,10 @@ export class TitleBar extends React.Component<TProps> {
               <DayOfMonth date={ this.props.date }/>
             </span> }
             { this.props.showMonth && <span className="title-bar__element">
-              <MonthOfYear date={ this.props.date }/>
+              <MonthOfYear
+                date={ this.props.date }
+                calendarService={ this.props.calendarService }
+              />
             </span> }
             { this.props.showYear && <span className="title-bar__element title-bar__element--faint">
               <Year date={ this.props.date }/>
@@ -55,7 +61,10 @@ export class TitleBar extends React.Component<TProps> {
           </h1>
           <p>
             { this.props.showDay && <span>
-              <DayOfWeek date={ this.props.date }/>
+              <DayOfWeek
+                date={ this.props.date }
+                calendarService={ this.props.calendarService }
+              />
             </span> }
           </p>
         </div>

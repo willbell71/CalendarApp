@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { ICalendarService } from '../services/calendar/icalendar-service';
 import { Month } from '../shared/month/month';
 import { MonthOfYear } from '../shared/month-of-year/month-of-year';
 
@@ -7,9 +8,11 @@ import './styles.scss';
 
 /**
  * Component properties.
+ * @property {ICalendarService} calendarService - calendar service.
  * @property {Date} data - date to display.
  */
 export type TProps = {
+  calendarService: ICalendarService;
   date: Date;
 };
 
@@ -30,8 +33,14 @@ export class YearPage extends React.Component<TProps> {
           const calendarMonths: Date = new Date(this.props.date.getFullYear(), month, 1);
           return (
             <div key={ index }>
-              <MonthOfYear date={ calendarMonths }/>
-              <Month date={ calendarMonths }/>
+              <MonthOfYear
+                date={ calendarMonths }
+                calendarService= { this.props.calendarService }
+              />
+              <Month
+                date={ calendarMonths }
+                calendarService= { this.props.calendarService }
+              />
             </div>
           );
         })}
