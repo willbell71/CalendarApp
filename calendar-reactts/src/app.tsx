@@ -2,7 +2,9 @@ import * as React from 'react';
 import * as reactDOM from 'react-dom';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
+import { CalendarService } from './services/calendar/calendar-service';
 import { DayPage } from './day-page/day-page';
+import { ICalendarService } from './services/calendar/icalendar-service';
 import { MonthPage } from './month-page/month-page';
 import { NavBar } from './shared/nav-bar/nav-bar';
 import { TitleBar } from './shared/title-bar/title-bar';
@@ -23,10 +25,22 @@ type TState = {
  * App component.
  */
 class App extends React.Component<{}, TState> {
+  // calendar service
+  private calendarService: ICalendarService;
+
   // @member {TState} state - component state.
   public state: TState = {
     date: new Date()
   };
+
+  /**
+   * Constructor.
+   */
+  public constructor() {
+    super({});
+
+    this.calendarService = new CalendarService();
+  }
 
   /**
    * Render day component.
@@ -64,7 +78,10 @@ class App extends React.Component<{}, TState> {
    */
   private yearPageComponent: () => JSX.Element = () => {
     return (
-      <YearPage date={ this.state.date }/>
+      <YearPage
+        date={ this.state.date }
+        calendarService={ this.calendarService }
+      />
     );
   }
 
@@ -82,6 +99,7 @@ class App extends React.Component<{}, TState> {
         />
         <main className="app__container">
           <TitleBar
+            calendarService={ this.calendarService }
             date={ new Date() }
             showDate={ true }
             showMonth={ true }

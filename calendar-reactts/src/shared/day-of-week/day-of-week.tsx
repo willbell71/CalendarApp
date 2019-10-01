@@ -1,10 +1,14 @@
 import * as React from 'react';
 
+import { ICalendarService } from '../../services/calendar/icalendar-service';
+
 /**
  * Component properties.
+ * @property {ICalendarService} calendarService - calendar service.
  * @property {Date} data - date to display.
  */
 export type TProps = {
+  calendarService: ICalendarService;
   date: Date;
 };
 
@@ -17,19 +21,8 @@ export class DayOfWeek extends React.Component<TProps> {
    * @return {JSX.Element} component rendner.
    */
   public render(): JSX.Element {
-    // list of days of the week
-    const days: string[] = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ];
-
     return (
-      <>{ days[this.props.date.getDay()] }</>
+      <>{ this.props.calendarService.getDayName(this.props.date.getDay()) }</>
     );
   }
 }

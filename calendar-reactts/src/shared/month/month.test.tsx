@@ -10,6 +10,12 @@ let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, Month>;
 beforeEach(() => {
   props = {
+    calendarService: {
+      getDayName: jest.fn().mockImplementation((dayIndex: number): string => 'Monday'),
+      getMonthName: jest.fn().mockImplementation((monthIndex: number): string => 'January'),
+      getDayColumnTitle: jest.fn().mockImplementation((): string[] => ['M', 'T', 'W', 'T', 'F', 'S', 'S']),
+      getStartOfMonthGridDate: jest.fn().mockImplementation((start: Date): Date => new Date(2019, 8, 26))
+    },
     date: new Date(2019, 8, 1)
   };
 
@@ -32,15 +38,7 @@ describe('Month', () => {
     expect(wrapper.find('p').at(6).text()).toEqual('S');
   });
 
-  it('should start on 26 for sept 2019', () => {
+  it('should start on 26', () => {
     expect(wrapper.find('p').at(7).text()).toEqual('26');
-  });
-
-  it('should start on 1 for july 2019', () => {
-    wrapper.setProps({
-      date: new Date(2019, 6, 1)
-    });
-
-    expect(wrapper.find('p').at(7).text()).toEqual('1');
   });
 });
