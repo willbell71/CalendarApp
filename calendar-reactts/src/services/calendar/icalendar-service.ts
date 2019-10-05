@@ -27,6 +27,12 @@ export interface ICalendarService {
   getDayColumnTitle: () => string[];
 
   /**
+   * Get column long titles for week grid view.
+   * @return {string[[]} list of column titles.
+   */
+  getDayColumnLongTitle: () => string[];
+
+  /**
    * Return the starting date for a month, to generate a full month grid.
    * @param {Date} start - date to get starting date for.
    * @return {Date} the date at which the month grid begins.

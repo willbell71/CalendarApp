@@ -1,3 +1,52 @@
+$color-gray-300: #E2E8F0;
+$color-gray-500: #A0AEC0;
+$color-gray-700: #4A5568;
+$color-gray-900: #1A202C;
+
+$color-red-500: #F56565;
+
 .month-page {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   margin-top: 16px;
+}
+
+.month-page__date {
+  height: 24px;
+  justify-self: flex-end;
+  padding: 0 8px;
+}
+
+.month-page__cell {
+  border: 1px solid rgba(0, 0, 0, .3);
+  color: $color-gray-300;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  padding: 4px 12px;
+}
+
+.month-page__cell--weekend {
+  background-color: #ffffff08;
+  color: $color-gray-500;
+}
+
+.month-page__cell--dead {
+  color: $color-gray-700;
+}
+
+.month-page__cell-date {
+  align-items: center;
+  align-self: flex-end;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 24px;
+  min-width: 24px;
+}
+
+.month-page__cell-date--today {
+  background-color: $color-red-500;
+  border-radius: 50%;
+  color: $color-gray-900;
 }
