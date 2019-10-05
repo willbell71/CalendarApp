@@ -7,11 +7,13 @@ import './styles.scss';
 /**
  * Component properties.
  * @property {ICalendarService} calendarService - calendar service.
- * @property {Date} data - date to display.
+ * @property {Date} date - date to display.
+ * @property {Date} today - today's date.
  */
 export type TProps = {
   calendarService: ICalendarService;
   date: Date;
+  today: Date;
 };
 
 /**
@@ -39,6 +41,13 @@ export class Month extends React.Component<TProps> {
           if (calendarDate.getMonth() !== this.props.date.getMonth()) {
             classes.push('month__cell--dead');
           }
+          if (calendarDate.getMonth() === this.props.date.getMonth() &&
+              calendarDate.getDate() === this.props.today.getDate() &&
+              calendarDate.getMonth() === this.props.today.getMonth() &&
+              calendarDate.getFullYear() === this.props.today.getFullYear()) {
+            classes.push('month__cell--today');
+          }
+          
           const elem: JSX.Element = (<p key={ index } className={ classes.join(' ') }>{ calendarDate.getDate() }</p>);
 
           calendarDate.setDate(calendarDate.getDate() + 1);

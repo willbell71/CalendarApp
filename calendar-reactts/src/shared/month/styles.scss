@@ -1,6 +1,9 @@
 $color-gray-300: #E2E8F0;
 $color-gray-500: #A0AEC0;
 $color-gray-700: #4A5568;
+$color-gray-900: #1A202C;
+
+$color-red-500: #F56565;
 
 .month {
   display: grid;
@@ -21,4 +24,10 @@ $color-gray-700: #4A5568;
 
 .month__cell--dead {
   color: $color-gray-700;
+}
+
+.month__cell--today {
+  background-color: $color-red-500;
+  border-radius: 25px;
+  color: $color-gray-900;
 }

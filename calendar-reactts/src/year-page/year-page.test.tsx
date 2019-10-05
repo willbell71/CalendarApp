@@ -17,7 +17,8 @@ beforeEach(() => {
       getDayColumnLongTitle: jest.fn().mockImplementation((): string[] => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']),
       getStartOfMonthGridDate: jest.fn().mockImplementation((start: Date): Date => new Date(2019, 8, 28))
     },
-    date: new Date(2019, 8, 28)
+    date: new Date(2019, 8, 28),
+    today: new Date(2019, 8, 28)
   };
 
   wrapper = enzyme.shallow(<YearPage {...props}/>);
