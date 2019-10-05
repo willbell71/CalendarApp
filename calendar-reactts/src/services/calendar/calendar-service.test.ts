@@ -123,6 +123,37 @@ describe('calendar-service', () => {
     });
   });
 
+  describe('getDayColumnLongTitle', () => {
+    it('should return a list of days starting with Mon', () => {
+      expect(service.getDayColumnLongTitle().length).toEqual(7);
+      expect(service.getDayColumnLongTitle()[0]).toEqual('Mon');
+    });
+
+    it('should return a list of days with Tue', () => {
+      expect(service.getDayColumnLongTitle()[1]).toEqual('Tue');
+    });
+
+    it('should return a list of days with Wed', () => {
+      expect(service.getDayColumnLongTitle()[2]).toEqual('Wed');
+    });
+
+    it('should return a list of days with Thu', () => {
+      expect(service.getDayColumnLongTitle()[3]).toEqual('Thu');
+    });
+
+    it('should return a list of days with Fri', () => {
+      expect(service.getDayColumnLongTitle()[4]).toEqual('Fri');
+    });
+
+    it('should return a list of days with Sat', () => {
+      expect(service.getDayColumnLongTitle()[5]).toEqual('Sat');
+    });
+
+    it('should return a list of days with Sun', () => {
+      expect(service.getDayColumnLongTitle()[6]).toEqual('Sun');
+    });
+  });
+
   describe('getStartOfMonthGridDate', () => {
     it('should return 1 for July', () => {
       expect(service.getStartOfMonthGridDate(new Date(2019, 6, 8)).getDate()).toEqual(1);

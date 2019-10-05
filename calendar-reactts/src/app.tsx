@@ -35,9 +35,10 @@ class App extends React.Component<{}, TState> {
 
   /**
    * Constructor.
+   * @param {{}} props - component properties.
    */
-  public constructor() {
-    super({});
+  public constructor(props: {}) {
+    super(props);
 
     this.calendarService = new CalendarService();
   }
@@ -48,7 +49,20 @@ class App extends React.Component<{}, TState> {
    */
   private dayPageComponent: () => JSX.Element = () => {
     return (
-      <DayPage date={ this.state.date }/>
+      <>
+        <TitleBar
+          calendarService={ this.calendarService }
+          date={ this.state.date }
+          showDate={ true }
+          showMonth={ true }
+          showYear={ true }
+          showDay={ true }
+          prev={ () => {} }
+          today={ () => {} }
+          next={ () => {} }
+        />
+        <DayPage date={ this.state.date }/>
+      </>
     );
   }
 
@@ -58,7 +72,20 @@ class App extends React.Component<{}, TState> {
    */
   private weekPageComponent: () => JSX.Element = () => {
     return (
-      <WeekPage date={ this.state.date }/>
+      <>
+        <TitleBar
+          calendarService={ this.calendarService }
+          date={ this.state.date }
+          showDate={ false }
+          showMonth={ true }
+          showYear={ true }
+          showDay={ false }
+          prev={ () => {} }
+          today={ () => {} }
+          next={ () => {} }
+        />
+        <WeekPage date={ this.state.date }/>
+      </>
     );
   }
 
@@ -68,7 +95,24 @@ class App extends React.Component<{}, TState> {
    */
   private monthPageComponent: () => JSX.Element = () => {
     return (
-      <MonthPage date={ this.state.date }/>
+      <>
+        <TitleBar
+          calendarService={ this.calendarService }
+          date={ this.state.date }
+          showDate={ false }
+          showMonth={ true }
+          showYear={ true }
+          showDay={ false }
+          prev={ () => {} }
+          today={ () => {} }
+          next={ () => {} }
+        />
+        <MonthPage
+          calendarService= { this.calendarService }
+          date={ this.state.date }
+          today={ new Date() }
+        />
+      </>
     );
   }
 
@@ -78,10 +122,23 @@ class App extends React.Component<{}, TState> {
    */
   private yearPageComponent: () => JSX.Element = () => {
     return (
-      <YearPage
-        date={ this.state.date }
-        calendarService={ this.calendarService }
-      />
+      <>
+        <TitleBar
+          calendarService={ this.calendarService }
+          date={ this.state.date }
+          showDate={ false }
+          showMonth={ false }
+          showYear={ true }
+          showDay={ false }
+          prev={ () => {} }
+          today={ () => {} }
+          next={ () => {} }
+        />
+        <YearPage
+          date={ this.state.date }
+          calendarService={ this.calendarService }
+        />
+      </>
     );
   }
 
@@ -98,18 +155,6 @@ class App extends React.Component<{}, TState> {
           search={ () => {} }
         />
         <main className="app__container">
-          <TitleBar
-            calendarService={ this.calendarService }
-            date={ new Date() }
-            showDate={ true }
-            showMonth={ true }
-            showYear={ true }
-            showDay={ true }
-            prev={ () => {} }
-            today={ () => {} }
-            next={ () => {} }
-          />
-
           <Switch>
             <Route path="/day" exact component={this.dayPageComponent}/>
             <Route path="/week" component={this.weekPageComponent}/>
