@@ -9,11 +9,13 @@ import './styles.scss';
 /**
  * Component properties.
  * @property {ICalendarService} calendarService - calendar service.
- * @property {Date} data - date to display.
+ * @property {Date} date - date to display.
+ * @property {Date} today - today's date.
  */
 export type TProps = {
   calendarService: ICalendarService;
   date: Date;
+  today: Date;
 };
 
 /**
@@ -40,6 +42,7 @@ export class YearPage extends React.Component<TProps> {
               <Month
                 date={ calendarMonths }
                 calendarService= { this.props.calendarService }
+                today={ this.props.today }
               />
             </div>
           );

@@ -137,6 +137,7 @@ class App extends React.Component<{}, TState> {
         <YearPage
           date={ this.state.date }
           calendarService={ this.calendarService }
+          today={ new Date() }
         />
       </>
     );
