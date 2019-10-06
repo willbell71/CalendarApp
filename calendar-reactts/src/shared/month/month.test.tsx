@@ -2,21 +2,17 @@ import * as React from 'react';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
+import { calendarServiceMock } from '../../mocks/calendar.service.mock';
 import { Month, TProps } from './month';
 
 enzyme.configure({ adapter: new Adapter() });
 
+calendarServiceMock.getStartOfMonthGridDate = jest.fn().mockImplementation((start: Date): Date => new Date(2019, 8, 26));
 let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, Month>;
 beforeEach(() => {
   props = {
-    calendarService: {
-      getDayName: jest.fn().mockImplementation((dayIndex: number): string => 'Monday'),
-      getMonthName: jest.fn().mockImplementation((monthIndex: number): string => 'January'),
-      getDayColumnTitle: jest.fn().mockImplementation((): string[] => ['M', 'T', 'W', 'T', 'F', 'S', 'S']),
-      getDayColumnLongTitle: jest.fn().mockImplementation((): string[] => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']),
-      getStartOfMonthGridDate: jest.fn().mockImplementation((start: Date): Date => new Date(2019, 8, 26))
-    },
+    calendarService: calendarServiceMock,
     date: new Date(2019, 8, 1),
     today: new Date(2019, 8, 26)
   };

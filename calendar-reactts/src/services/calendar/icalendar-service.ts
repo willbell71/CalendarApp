@@ -38,4 +38,11 @@ export interface ICalendarService {
    * @return {Date} the date at which the month grid begins.
    */
   getStartOfMonthGridDate: (start: Date) => Date;
+
+  /**
+   * Return the starting date for a week, to generate a week grid.
+   * @param {Date} start - date to get starting date for.
+   * @return {Date} the date at which the week grid begins.
+   */
+  getStartOfWeekGridDate: (start: Date) => Date;
 }

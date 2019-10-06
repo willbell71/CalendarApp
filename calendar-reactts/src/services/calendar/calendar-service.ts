@@ -83,4 +83,18 @@ export class CalendarService implements ICalendarService {
 
     return calendarDate;
   }
+
+  /**
+   * Return the starting date for a week, to generate a week grid.
+   * @param {Date} start - date to get starting date for.
+   * @return {Date} the date at which the week grid begins.
+   */
+  public getStartOfWeekGridDate(start: Date): Date {
+    let displacement: number = start.getDay() - 1;
+    if (-1 === displacement) {
+      displacement = 6;
+    }
+
+    return new Date(start.getFullYear(), start.getMonth(), start.getDate() - displacement);
+  }
 }
