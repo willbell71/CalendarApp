@@ -167,4 +167,14 @@ describe('calendar-service', () => {
       expect(service.getStartOfMonthGridDate(new Date(2019, 8, 8)).getDate()).toEqual(26);
     });
   });
+
+  describe('getStartOfWeekGridDate', () => {
+    it('should return 30 for Oct 6', () => {
+      expect(service.getStartOfWeekGridDate(new Date(2019, 9, 6)). getDate()).toEqual(30);
+    });
+
+    it('should return 30 for Sept 30', () => {
+      expect(service.getStartOfWeekGridDate(new Date(2019, 8, 30)). getDate()).toEqual(30);
+    });
+  });
 });
