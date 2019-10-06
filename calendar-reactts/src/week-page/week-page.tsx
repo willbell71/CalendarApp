@@ -27,11 +27,8 @@ export class WeekPage extends React.Component<TProps> {
   public render(): JSX.Element {
     // build column titles
     const titles: string[] = ['', ...this.props.calendarService.getDayColumnLongTitle()];
-    // build row titles
-    const times: string[] = ['All Day'];
-    for (let time: number = 0; time < 24; time++) {
-      times.push(`${('00' + time).slice(-2)}:00`);
-    }
+    // get row titles
+    const times: string[] = this.props.calendarService.getTimeNames();
 
     // get date for start of week
     const startDate: Date = this.props.calendarService.getStartOfWeekGridDate(this.props.date);

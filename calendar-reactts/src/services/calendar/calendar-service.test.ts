@@ -92,6 +92,88 @@ describe('calendar-service', () => {
     });
   });
 
+  describe('getTimeNames', () => {
+    it('should return 25 strings', () => {
+      expect(service.getTimeNames().length).toEqual(25);
+    });
+
+    it('should return All Day at index 0', () => {
+      expect(service.getTimeNames()[0]).toEqual('All Day');
+    });
+    it('should return 00:00 at index 1', () => {
+      expect(service.getTimeNames()[1]).toEqual('00:00');
+    });
+    it('should return 01:00 at index 2', () => {
+      expect(service.getTimeNames()[2]).toEqual('01:00');
+    });
+    it('should return 02:00 at index 3', () => {
+      expect(service.getTimeNames()[3]).toEqual('02:00');
+    });
+    it('should return 03:00 at index 4', () => {
+      expect(service.getTimeNames()[4]).toEqual('03:00');
+    });
+    it('should return 04:00 at index 5', () => {
+      expect(service.getTimeNames()[5]).toEqual('04:00');
+    });
+    it('should return 05:00 at index 6', () => {
+      expect(service.getTimeNames()[6]).toEqual('05:00');
+    });
+    it('should return 06:00 at index 7', () => {
+      expect(service.getTimeNames()[7]).toEqual('06:00');
+    });
+    it('should return 07:00 at index 8', () => {
+      expect(service.getTimeNames()[8]).toEqual('07:00');
+    });
+    it('should return 08:00 at index 9', () => {
+      expect(service.getTimeNames()[9]).toEqual('08:00');
+    });
+    it('should return 09:00 at index 10', () => {
+      expect(service.getTimeNames()[10]).toEqual('09:00');
+    });
+    it('should return 10:00 at index 11', () => {
+      expect(service.getTimeNames()[11]).toEqual('10:00');
+    });
+    it('should return 11:00 at index 12', () => {
+      expect(service.getTimeNames()[12]).toEqual('11:00');
+    });
+    it('should return 12:00 at index 13', () => {
+      expect(service.getTimeNames()[13]).toEqual('12:00');
+    });
+    it('should return 13:00 at index 14', () => {
+      expect(service.getTimeNames()[14]).toEqual('13:00');
+    });
+    it('should return 14:00 at index 15', () => {
+      expect(service.getTimeNames()[15]).toEqual('14:00');
+    });
+    it('should return 15:00 at index 16', () => {
+      expect(service.getTimeNames()[16]).toEqual('15:00');
+    });
+    it('should return 16:00 at index 17', () => {
+      expect(service.getTimeNames()[17]).toEqual('16:00');
+    });
+    it('should return 17:00 at index 18', () => {
+      expect(service.getTimeNames()[18]).toEqual('17:00');
+    });
+    it('should return 18:00 at index 19', () => {
+      expect(service.getTimeNames()[19]).toEqual('18:00');
+    });
+    it('should return 19:00 at index 20', () => {
+      expect(service.getTimeNames()[20]).toEqual('19:00');
+    });
+    it('should return 20:00 at index 21', () => {
+      expect(service.getTimeNames()[21]).toEqual('20:00');
+    });
+    it('should return 21:00 at index 22', () => {
+      expect(service.getTimeNames()[22]).toEqual('21:00');
+    });
+    it('should return 22:00 at index 23', () => {
+      expect(service.getTimeNames()[23]).toEqual('22:00');
+    });
+    it('should return 23:00 at index 24', () => {
+      expect(service.getTimeNames()[24]).toEqual('23:00');
+    });
+  });
+
   describe('getDayColumnTitle', () => {
     it('should return a list of days starting with M', () => {
       expect(service.getDayColumnTitle().length).toEqual(7);

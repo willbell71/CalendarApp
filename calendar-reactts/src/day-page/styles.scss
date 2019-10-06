@@ -1,3 +1,50 @@
+$color-gray-500: #A0AEC0;
+$color-gray-700: #4A5568;
+$color-gray-800: #2D3748;
+$color-gray-900: #1A202C;
+
+$color-red-500: #F56565;
+
+$color-white: #ffffff;
+
 .day-page {
+  display: flex;
   margin-top: 16px;
+}
+
+.day-page__times {
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  width: 50%;
+}
+
+.day-page__event {
+  margin-left: 8px;
+  width: 50%;
+}
+
+.day-page__event-month {
+  max-width: 260px;
+}
+
+.day-page__time {
+  border-top: 1px solid $color-gray-800;
+  color: $color-gray-700;
+}
+
+.day-page__time--now {
+  border-top: 1px solid $color-red-500;
+}
+
+.day-page__cell {
+  border: 1px solid $color-gray-800;
+  height: 64px;
+}
+
+.day-page__cell--now {
+  border-top: 1px solid $color-red-500;
+}
+
+.day-page__cell--weekend {
+  background-color: #ffffff08;
 }

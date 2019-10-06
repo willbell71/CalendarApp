@@ -62,7 +62,9 @@ class App extends React.Component<{}, TState> {
           next={ () => {} }
         />
         <DayPage
+          calendarService={ this.calendarService }
           date={ this.state.date }
+          today={ new Date() }
         />
       </>
     );
