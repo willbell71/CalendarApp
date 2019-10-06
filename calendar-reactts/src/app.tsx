@@ -84,7 +84,11 @@ class App extends React.Component<{}, TState> {
           today={ () => {} }
           next={ () => {} }
         />
-        <WeekPage date={ this.state.date }/>
+        <WeekPage
+          date={ this.state.date }
+          calendarService={ this.calendarService }
+          today={ new Date() }
+        />
       </>
     );
   }
