@@ -30,11 +30,16 @@ export class YearPage extends React.Component<TProps> {
     const months: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     return (
-      <div className="year-page">
+      <div
+        className="year-page"
+      >
         {months.map((month: number, index: number) => {
           const calendarMonths: Date = new Date(this.props.date.getFullYear(), month, 1);
+
           return (
-            <div key={ index }>
+            <div
+              key={ index }
+            >
               <MonthOfYear
                 date={ calendarMonths }
                 calendarService= { this.props.calendarService }

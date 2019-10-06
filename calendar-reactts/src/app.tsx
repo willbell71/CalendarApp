@@ -61,7 +61,9 @@ class App extends React.Component<{}, TState> {
           today={ () => {} }
           next={ () => {} }
         />
-        <DayPage date={ this.state.date }/>
+        <DayPage
+          date={ this.state.date }
+        />
       </>
     );
   }
@@ -159,13 +161,36 @@ class App extends React.Component<{}, TState> {
           add={ () => {} }
           search={ () => {} }
         />
-        <main className="app__container">
+
+        <main
+          className="app__container"
+        >
           <Switch>
-            <Route path="/day" exact component={this.dayPageComponent}/>
-            <Route path="/week" component={this.weekPageComponent}/>
-            <Route path="/month" component={this.monthPageComponent}/>
-            <Route path="/year" component={this.yearPageComponent}/>
-            <Redirect from="*" to="/year"/>
+            <Route
+              path="/day"
+              exact
+              component={this.dayPageComponent}
+            />
+
+            <Route
+              path="/week"
+              component={this.weekPageComponent}
+            />
+
+            <Route
+              path="/month"
+              component={this.monthPageComponent}
+            />
+
+            <Route
+              path="/year"
+              component={this.yearPageComponent}
+            />
+
+            <Redirect
+              from="*"
+              to="/year"
+            />
           </Switch>
         </main>
       </BrowserRouter>

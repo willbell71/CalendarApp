@@ -20,7 +20,9 @@ export class DayPage extends React.Component<TProps> {
    */
   public render(): JSX.Element {
     return (
-      <div className="day-page">
+      <div
+        className="day-page"
+      >
         <p>Day Page!</p>
       </div>
     );

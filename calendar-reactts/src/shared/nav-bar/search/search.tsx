@@ -20,9 +20,17 @@ export class Search extends React.Component<TProps> {
    */
   public render(): JSX.Element {
     return (
-      <div className="search">
-        <i className="fas fa-search"/>
-        <input className="search__input" type="text" placeholder="Search"/>
+      <div
+        className="search"
+      >
+        <i
+          className="fas fa-search"
+        />
+        <input
+          className="search__input"
+          type="text"
+          placeholder="Search"
+        />
       </div>
     );
   }

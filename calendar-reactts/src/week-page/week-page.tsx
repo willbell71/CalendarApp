@@ -40,7 +40,10 @@ export class WeekPage extends React.Component<TProps> {
     let isTodayVisible: boolean = false;
 
     return (
-      <div className="week-page">
+      <div
+        className="week-page"
+      >
+
         {titles.map((title: string, index: number) => {
           const dateClassList: string[] = ['week-page__day-date'];
           if (index > 5) {
@@ -60,9 +63,19 @@ export class WeekPage extends React.Component<TProps> {
           }
 
           const elem: JSX.Element = index ?
-            (<p key={ index } className={ dayClassList.join(' ') }>{ title }
-              <span className={dateClassList.join(' ')}>{ startDate.getDate() }</span>
-            </p>) : (<p key={ index }/>);
+            (
+              <p
+                key={ index }
+                className={ dayClassList.join(' ') }
+              >{ title }
+                <span
+                  className={dateClassList.join(' ')}
+                >{ startDate.getDate() }</span>
+              </p>
+            ) : (
+              <p
+                key={ index }
+              />);
 
           if (index > 0) {
             startDate.setDate(startDate.getDate() + 1);
@@ -78,11 +91,29 @@ export class WeekPage extends React.Component<TProps> {
           }
 
           return (
-            <React.Fragment key={ timeIndex }>
-              <p className={ `week-page__time${timeIndex === now ? ' week-page__time--now' : ''}` }>{ time }</p>
-              {titles.slice(0, -1).map((title: string, titleIndex: number) => (
-                <div key={ titleIndex } className={ `week-page__cell ${timeIndex === now ? 'week-page__cell--now' : ''}` }/>
-              ))}
+            <React.Fragment
+              key={ timeIndex }
+            >
+              <p
+                className={ `week-page__time ${timeIndex === now ? 'week-page__time--now' : ''}` }
+              >{ time }</p>
+
+              {titles.slice(0, -1).map((title: string, titleIndex: number) => {
+                const cellClassList: string[] = ['week-page__cell'];
+                if (timeIndex === now) {
+                  cellClassList.push('week-page__cell--now');
+                }
+                if (titleIndex > 4) {
+                  cellClassList.push('week-page__cell--weekend');
+                }
+
+                return (
+                  <div
+                    key={ titleIndex }
+                    className={ cellClassList.join(' ') }
+                  />
+                );
+              })}
             </React.Fragment>
           );
         })}

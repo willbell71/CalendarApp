@@ -43,33 +43,62 @@ export class TitleBar extends React.Component<TProps> {
    */
   public render(): JSX.Element {
     return (
-      <div className="title-bar">
+      <div
+        className="title-bar"
+      >
         <div>
-          <h1 className="title-bar__date">
-            { this.props.showDate && <span className="title-bar__element">
-              <DayOfMonth date={ this.props.date }/>
-            </span> }
-            { this.props.showMonth && <span className="title-bar__element">
-              <MonthOfYear
-                date={ this.props.date }
-                calendarService={ this.props.calendarService }
-              />
-            </span> }
-            { this.props.showYear && <span className="title-bar__element title-bar__element--faint">
-              <Year date={ this.props.date }/>
-            </span> }
+          <h1
+            className="title-bar__date"
+          >
+            { this.props.showDate &&
+              <span
+                className="title-bar__element"
+              >
+                <DayOfMonth
+                  date={ this.props.date }
+                />
+              </span>
+            }
+            { this.props.showMonth &&
+              <span
+                className="title-bar__element"
+              >
+                <MonthOfYear
+                  date={ this.props.date }
+                  calendarService={ this.props.calendarService }
+                />
+              </span>
+            }
+            { this.props.showYear &&
+              <span
+                className="title-bar__element title-bar__element--faint"
+              >
+                <Year
+                  date={ this.props.date }
+                />
+              </span>
+            }
           </h1>
+
           <p>
-            { this.props.showDay && <span>
-              <DayOfWeek
-                date={ this.props.date }
-                calendarService={ this.props.calendarService }
-              />
-            </span> }
+            { this.props.showDay &&
+              <span>
+                <DayOfWeek
+                  date={ this.props.date }
+                  calendarService={ this.props.calendarService }
+                />
+              </span>
+            }
           </p>
         </div>
-        <div className="title-bar__spacer"/>
-        <div className="title-bar__controls">
+
+        <div
+          className="title-bar__spacer"
+        />
+
+        <div
+          className="title-bar__controls"
+        >
           <DateControl
             prev={ this.props.prev }
             today={ this.props.today }

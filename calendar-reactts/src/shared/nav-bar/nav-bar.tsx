@@ -27,15 +27,32 @@ export class NavBar extends React.Component<TProps> {
    */
   public render(): JSX.Element {
     return (
-      <header className="nav-bar">
+      <header
+        className="nav-bar"
+      >
         <div>
-          <button onClick={ this.props.calendars } className="button button--big">Calendars</button>
-          <button onClick={ this.props.add } className="button button--big">+</button>
+          <button
+            onClick={ this.props.calendars }
+            className="button button--big"
+          >Calendars</button>
+
+          <button
+            onClick={ this.props.add }
+            className="button button--big"
+          >+</button>
         </div>
+
         <div className="nav-bar__spacer"/>
+
         <Navigation/>
-        <div className="nav-bar__spacer"/>
-        <Search search={ this.props.search }/>
+
+        <div
+          className="nav-bar__spacer"
+        />
+
+        <Search
+          search={ this.props.search }
+        />
       </header>
     );
   }
