@@ -48,6 +48,19 @@ export class CalendarService implements ICalendarService {
   }
 
   /**
+   * Get labels for time slots.
+   * @return {string[]} list of time slot labels.
+   */
+  public getTimeNames(): string[] {
+    const times: string[] = ['All Day'];
+    for (let time: number = 0; time < 24; time++) {
+      times.push(`${('00' + time).slice(-2)}:00`);
+    }
+
+    return times;
+  }
+
+  /**
    * Get column titles for week grid view.
    * @return {string[[]} list of column titles.
    */

@@ -21,6 +21,12 @@ export interface ICalendarService {
   getMonthName: (monthIndex: number) => string;
 
   /**
+   * Get labels for time slots.
+   * @return {string[]} list of time slot labels.
+   */
+  getTimeNames: () => string[];
+
+  /**
    * Get column titles for week grid view.
    * @return {string[[]} list of column titles.
    */
