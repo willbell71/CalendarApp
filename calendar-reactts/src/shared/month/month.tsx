@@ -32,7 +32,13 @@ export class Month extends React.Component<TProps> {
 
     return (
       <div className="month">
-        {days.map((day: string, index: number) => (<p key={ index } className="month__cell">{ day }</p>))}
+        {days.map((day: string, index: number) => (
+          <p
+            key={ index }
+            className="month__cell"
+          >{ day }</p>
+        ))}
+
         {dates.map((date: string, index: number) => {
           const classes: string[] = ['month__cell'];
           if (date === 'S') {
@@ -48,7 +54,11 @@ export class Month extends React.Component<TProps> {
             classes.push('month__cell--today');
           }
           
-          const elem: JSX.Element = (<p key={ index } className={ classes.join(' ') }>{ calendarDate.getDate() }</p>);
+          const elem: JSX.Element = (
+            <p
+              key={ index }
+              className={ classes.join(' ') }
+            >{ calendarDate.getDate() }</p>);
 
           calendarDate.setDate(calendarDate.getDate() + 1);
 

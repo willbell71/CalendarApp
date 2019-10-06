@@ -25,9 +25,20 @@ export class DateControl extends React.Component<TProps> {
   public render(): JSX.Element {
     return (
       <div>
-        <button className="button" onClick={ this.props.prev }>&lt;</button>
-        <button className="button" onClick={ this.props.today }>Today</button>
-        <button className="button" onClick={ this.props.next }>&gt;</button>
+        <button
+          className="button"
+          onClick={ this.props.prev }
+        >&lt;</button>
+
+        <button
+          className="button"
+          onClick={ this.props.today }
+        >Today</button>
+
+        <button
+          className="button"
+          onClick={ this.props.next }
+        >&gt;</button>
       </div>
     );
   }

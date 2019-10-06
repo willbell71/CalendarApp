@@ -14,10 +14,25 @@ export class Navigation extends React.Component {
   public render(): JSX.Element {
     return (
       <div>
-        <Link to="/day" className="button button--big">Day</Link>
-        <Link to="/week" className="button button--big">Week</Link>
-        <Link to="/month" className="button button--big">Month</Link>
-        <Link to="/year" className="button button--big">Year</Link>
+        <Link
+          to="/day"
+          className="button button--big"
+        >Day</Link>
+
+        <Link
+          to="/week"
+          className="button button--big"
+        >Week</Link>
+
+        <Link
+          to="/month"
+          className="button button--big"
+        >Month</Link>
+
+        <Link
+          to="/year"
+          className="button button--big"
+        >Year</Link>
       </div>
     );
   }

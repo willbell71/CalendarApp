@@ -32,7 +32,12 @@ export class MonthPage extends React.Component<TProps> {
 
     return (
       <div className="month-page">
-        {days.map((day: string, index: number) => (<p key={ index } className="month-page__date">{ day }</p>))}
+        {days.map((day: string, index: number) => (
+          <p
+            key={ index }
+            className="month-page__date"
+          >{ day }</p>
+        ))}
 
         {dates.map((date: string, index: number) => {
           const classes: string[] = ['month-page__cell'];
@@ -52,8 +57,13 @@ export class MonthPage extends React.Component<TProps> {
 
           // TODO - add events to date
           const elem: JSX.Element = (
-            <div key={ index } className={ classes.join(' ') }>
-              <p className={ dateClasses.join(' ') }>{ calendarDate.getDate() }</p>
+            <div
+              key={ index }
+              className={ classes.join(' ') }
+            >
+              <p
+                className={ dateClasses.join(' ') }
+              >{ calendarDate.getDate() }</p>
               {/* <p>New Event</p>
               <p>2 more...</p> */}
             </div>
