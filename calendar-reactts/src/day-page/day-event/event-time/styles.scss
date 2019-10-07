@@ -1,0 +1,10 @@
+.event-time {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.event-time-closed {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

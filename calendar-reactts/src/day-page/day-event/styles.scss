@@ -1,0 +1,23 @@
+.day-event__event-title {
+  display: flex;
+}
+
+select {
+  appearance: none;
+  background-color: #333;
+  border: none;
+  color: white;
+  height: 32px;
+  outline: none;
+  margin-top: 8px;
+  width: 100%;
+}
+
+input {
+  background-color: #333;
+  color: white;
+  height: 32px;
+  padding: 0 8px;
+  margin-top: 8px;
+  width: 100%;
+}
