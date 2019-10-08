@@ -8,7 +8,7 @@ import './styles.scss';
  * Component state.
  * @property {boolean} open - is control expanded.
  */
-type TState = {
+export type TState = {
   open: boolean;
 };
 
@@ -102,14 +102,23 @@ export class EventTime extends React.Component<{}, TState> {
   }
 
   /**
+   * Toggle open closed state of control.
+   */
+  private toggle: () => void = (): void => {
+    this.setState((state: TState) => ({
+      open: !state.open
+    }));
+  };
+
+  /**
    * Component render.
    * @return {JSX.Element} component rendner.
    */
   public render(): JSX.Element {
     return (
-      <>
+      <div onClick={ this.toggle }>
         { this.state.open ? this.renderOpen() : this.renderClosed() }
-      </>
+      </div>
     );
   }
 }

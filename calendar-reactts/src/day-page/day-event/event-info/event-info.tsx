@@ -6,7 +6,7 @@ import './styles.scss';
  * Component state.
  * @property {boolean} open - component is open.
  */
-type TState = {
+export type TState = {
   open: boolean;
 };
 
@@ -46,14 +46,24 @@ export class EventInfo extends React.Component<{}, TState> {
   }
 
   /**
+   * Toggle control between open and closed state.
+   */
+  private toggle: () => void = (): void => {
+    // toggle open state
+    this.setState((state: TState) => ({
+      open: !state.open
+    }));
+  };
+
+  /**
    * Component render.
    * @return {JSX.Element} component rendner.
    */
   public render(): JSX.Element {
     return (
-      <>
+      <div onClick={ this.toggle }>
         { this.state.open ? this.renderOpen() : this.renderClosed() }
-      </>
+      </div>
     );
   }
 }

@@ -26,7 +26,7 @@ export class DayEvent extends React.Component {
         <input type="text" placeholder="Add Location"/>
         <EventTime/>
         <input type="text" placeholder="Add invitees"/>
-        <EventInfo/> 
+        <EventInfo/>
       </div>
     );
   }
