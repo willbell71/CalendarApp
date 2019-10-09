@@ -17,15 +17,15 @@ export class DayEvent extends React.Component {
     return (
       <div>
         <div className="day-event__event-title">
-          <input type="text" placeholder="New Event"/>
-          <select name="" id="">
+          <input className="day-event__event-input" type="text" placeholder="New Event"/>
+          <select className="day-event__event-title-type" name="" id="">
             <option value="">Work</option>
             <option value="">Home</option>
           </select>
         </div>
-        <input type="text" placeholder="Add Location"/>
+        <input className="day-event__event-input" type="text" placeholder="Add Location"/>
         <EventTime/>
-        <input type="text" placeholder="Add invitees"/>
+        <input className="day-event__event-input" type="text" placeholder="Add invitees"/>
         <EventInfo/>
       </div>
     );

@@ -30,7 +30,7 @@ export class NavBar extends React.Component<TProps> {
       <header
         className="nav-bar"
       >
-        <div>
+        <div className="nav-bar__control-group">
           <button
             onClick={ this.props.calendars }
             className="button button--big"
