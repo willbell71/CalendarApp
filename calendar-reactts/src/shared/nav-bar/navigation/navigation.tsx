@@ -13,7 +13,7 @@ export class Navigation extends React.Component {
    */
   public render(): JSX.Element {
     return (
-      <div>
+      <div className="navigation__control-group">
         <Link
           to="/day"
           className="button button--big"

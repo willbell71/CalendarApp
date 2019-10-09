@@ -24,7 +24,7 @@ export class DateControl extends React.Component<TProps> {
    */
   public render(): JSX.Element {
     return (
-      <div>
+      <div className="date-control__control-group">
         <button
           className="button"
           onClick={ this.props.prev }
