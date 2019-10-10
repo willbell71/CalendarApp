@@ -23,7 +23,7 @@ afterEach(() => jest.restoreAllMocks());
 describe('DayPage', () => {
   it('should render', () => {
     expect(wrapper.find('p').length).toEqual(25);
-    expect(wrapper.find('div').length).toEqual(25 + 4);
+    expect(wrapper.find('div').length).toEqual(25 + 5);
     expect(wrapper.find('Month').length).toEqual(1);
     expect(wrapper.find('DayEvent').length).toEqual(1);
   });

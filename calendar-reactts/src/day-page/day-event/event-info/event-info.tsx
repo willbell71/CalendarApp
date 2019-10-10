@@ -25,10 +25,24 @@ export class EventInfo extends React.Component<{}, TState> {
    */
   private renderOpen(): JSX.Element {
     return (
-      <div>
-        <input type="text" placeholder="Add Notes"/>
-        <input type="text" placeholder="Add URL"/>
-        <input type="text" placeholder="Add Attachment..."/>
+      <div
+        className="event-info"
+      >
+        <input
+          className="event-info__event-input"
+          type="text"
+          placeholder="Add Notes"
+        />
+        <input
+          className="event-info__event-input"
+          type="text"
+          placeholder="Add URL"
+        />
+        <input
+          className="event-info__event-input"
+          type="text"
+          placeholder="Add Attachment..."
+        />
       </div>
     );
   }

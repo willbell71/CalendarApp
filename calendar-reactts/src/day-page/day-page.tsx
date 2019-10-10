@@ -57,14 +57,16 @@ export class DayPage extends React.Component<TProps> {
         <div
           className="day-page__event"
         >
-          <div
-            className="day-page__event-month"
-          >
-            <Month
-              calendarService={ this.props.calendarService }
-              date={ this.props.date }
-              today={ this.props.today }
-            />
+          <div>
+            <div
+              className="day-page__event-month"
+            >
+              <Month
+                calendarService={ this.props.calendarService }
+                date={ this.props.date }
+                today={ this.props.today }
+              />
+            </div>
             <DayEvent/>
           </div>            
         </div>
