@@ -15,9 +15,10 @@ export class DayEvent extends React.Component {
    */
   public render(): JSX.Element {
     return (
-      <div>
+      <div className="day-event">
         <div className="day-event__event-title">
           <input className="day-event__event-input" type="text" placeholder="New Event"/>
+          <div className="day-event__event-title-spacer"></div>
           <select className="day-event__event-title-type" name="" id="">
             <option value="">Work</option>
             <option value="">Home</option>

@@ -14,7 +14,7 @@ afterEach(() => jest.restoreAllMocks());
 
 describe('DayEvent', () => {
   it('should render', () => {
-    expect(wrapper.find('div').length).toEqual(2);
+    expect(wrapper.find('div').length).toEqual(3);
     expect(wrapper.find('input').length).toEqual(3);
     expect(wrapper.find('select').length).toEqual(1);
     expect(wrapper.find('option').length).toEqual(2);

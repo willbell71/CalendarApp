@@ -29,7 +29,10 @@ export class EventTime extends React.Component<{}, TState> {
     return (
       <div className="event-time">
         <p>all-day:</p>
-        <input type="checkbox"/>
+        <input
+          className="event-time__checkbox"
+          type="checkbox"
+        />
 
         <p>starts:</p>
         <div>
@@ -43,7 +46,11 @@ export class EventTime extends React.Component<{}, TState> {
 
         <p>repeat:</p>
         <div>
-          <select name="" id="">
+          <select
+            className="event-time__select"
+            name=""
+            id=""
+          >
             <option value="">None</option>
             <option value="">Every Day</option>
             <option value="">Every Week</option>
@@ -55,7 +62,11 @@ export class EventTime extends React.Component<{}, TState> {
 
         <p>travel time:</p>
         <div>
-          <select name="" id="">
+          <select
+            className="event-time__select"
+            name=""
+            id=""
+          >
             <option value="">None</option>
             <option value="">5 minutes</option>
             <option value="">15 minutes</option>
@@ -68,7 +79,11 @@ export class EventTime extends React.Component<{}, TState> {
         </div>
 
         <p>alert:</p>
-        <select name="" id="">
+        <select
+          className="event-time__select"
+          name=""
+          id=""
+        >
           <option value="">None</option>
           <option value="">At time of event</option>
           <option value="">5 minutes before</option>
