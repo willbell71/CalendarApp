@@ -41,10 +41,10 @@ export class EventTime extends React.Component<TProps, TState> {
    */
   private renderOpen(): JSX.Element {
     return (
-      <div className="event-time">
+      <div className="event-time__open">
         <p>all-day:</p>
         <input
-          className="event-time__checkbox"
+          className="event-time__open-checkbox"
           type="checkbox"
         />
 
@@ -69,7 +69,7 @@ export class EventTime extends React.Component<TProps, TState> {
         <p>repeat:</p>
         <div>
           <select
-            className="event-time__select"
+            className="event-time__open-select"
             name=""
             id=""
           >
@@ -85,7 +85,7 @@ export class EventTime extends React.Component<TProps, TState> {
         <p>travel time:</p>
         <div>
           <select
-            className="event-time__select"
+            className="event-time__open-select"
             name=""
             id=""
           >
@@ -102,7 +102,7 @@ export class EventTime extends React.Component<TProps, TState> {
 
         <p>alert:</p>
         <select
-          className="event-time__select"
+          className="event-time__open-select"
           name=""
           id=""
         >
@@ -129,11 +129,11 @@ export class EventTime extends React.Component<TProps, TState> {
   private renderClosed(): JSX.Element {
     return (
       <div>
-        <div className="event-time-closed">
+        <div className="event-time__closed">
           <p>Monday 7 Oct</p>
           <p>16:00 to 17:00</p>
         </div>
-        <p>Add Alert, Repeat or Travel Time</p>
+        <p className="event-time__closed-caption">Add Alert, Repeat or Travel Time</p>
       </div>
     );
   }
@@ -153,7 +153,7 @@ export class EventTime extends React.Component<TProps, TState> {
    */
   public render(): JSX.Element {
     return (
-      <div onClick={ this.toggle }>
+      <div className="event-time" onClick={ this.toggle }>
         { this.state.open ? this.renderOpen() : this.renderClosed() }
       </div>
     );
