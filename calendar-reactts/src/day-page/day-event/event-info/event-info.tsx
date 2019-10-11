@@ -26,20 +26,20 @@ export class EventInfo extends React.Component<{}, TState> {
   private renderOpen(): JSX.Element {
     return (
       <div
-        className="event-info"
+        className="event-info__open"
       >
         <input
-          className="event-info__event-input"
+          className="event-info__open-event-input"
           type="text"
           placeholder="Add Notes"
         />
         <input
-          className="event-info__event-input"
+          className="event-info__open-event-input"
           type="text"
           placeholder="Add URL"
         />
         <input
-          className="event-info__event-input"
+          className="event-info__open-event-input"
           type="text"
           placeholder="Add Attachment..."
         />
@@ -54,7 +54,7 @@ export class EventInfo extends React.Component<{}, TState> {
   private renderClosed(): JSX.Element {
     return (
       <div>
-        <p>Add Notes, URL or Attachments</p>
+        <p className="event-info__closed-caption">Add Notes, URL or Attachments</p>
       </div>
     );
   }
@@ -63,7 +63,6 @@ export class EventInfo extends React.Component<{}, TState> {
    * Toggle control between open and closed state.
    */
   private toggle: () => void = (): void => {
-    // toggle open state
     this.setState((state: TState) => ({
       open: !state.open
     }));
@@ -75,7 +74,7 @@ export class EventInfo extends React.Component<{}, TState> {
    */
   public render(): JSX.Element {
     return (
-      <div onClick={ this.toggle }>
+      <div className="event-info" onClick={ this.toggle }>
         { this.state.open ? this.renderOpen() : this.renderClosed() }
       </div>
     );
