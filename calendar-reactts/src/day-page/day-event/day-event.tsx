@@ -2,13 +2,26 @@ import * as React from 'react';
 
 import { EventTime } from './event-time/event-time';
 import { EventInfo } from './event-info/event-info';
+import { ICalendarService } from '../../services/calendar/icalendar-service';
 
 import './styles.scss';
 
 /**
+ * Component props.
+ * @property {ICalendarService} calendarService - calendar service provider.
+ * @property {Date} date - currently selected date.
+ * @property {Date} today - todays date.
+ */
+export type TProps = {
+  calendarService: ICalendarService;
+  date: Date;
+  today: Date;
+};
+
+/**
  * Day event component.
  */
-export class DayEvent extends React.Component {
+export class DayEvent extends React.Component<TProps> {
   /**
    * Component render.
    * @return {JSX.Element} component rendner.
@@ -25,7 +38,11 @@ export class DayEvent extends React.Component {
           </select>
         </div>
         <input className="day-event__event-input" type="text" placeholder="Add Location"/>
-        <EventTime/>
+        <EventTime
+          calendarService={ this.props.calendarService }
+          date={ this.props.date }
+          today={ this.props.today }
+        />
         <input className="day-event__event-input" type="text" placeholder="Add invitees"/>
         <EventInfo/>
       </div>

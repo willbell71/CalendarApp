@@ -2,13 +2,21 @@ import * as React from 'react';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
-import { DayEvent } from './day-event';
+import { DayEvent, TProps } from './day-event';
+
+import { calendarServiceMock } from '../../mocks/calendar.service.mock';
 
 enzyme.configure({ adapter: new Adapter() });
 
+let props: TProps;
 let wrapper: enzyme.ShallowWrapper<{}, {}, DayEvent>;
 beforeEach(() => {
-  wrapper = enzyme.shallow(<DayEvent/>);
+  props = {
+    calendarService: calendarServiceMock,
+    date: new Date(),
+    today: new Date('2019-10-01T02:10:00.000')
+  };
+  wrapper = enzyme.shallow(<DayEvent {...props}/>);
 });
 afterEach(() => jest.restoreAllMocks());
 

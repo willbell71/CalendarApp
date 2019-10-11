@@ -1,0 +1,16 @@
+$color-gray-900: #1A202C;
+
+.time-picker {
+  position: relative;
+}
+
+.time-picker__month-view {
+  background-color: $color-gray-900;
+  position: absolute;
+  width: 200px;
+  z-index: 1000;
+}
+
+.time-picker__date-view-time {
+  margin-left: 4px;
+}
