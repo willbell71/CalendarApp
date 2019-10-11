@@ -2,7 +2,21 @@ import * as React from 'react';
 
 import { TimePicker } from './time-picker/time-picker';
 
+import { ICalendarService } from '../../../services/calendar/icalendar-service';
+
 import './styles.scss';
+
+/**
+ * Component props.
+ * @property {ICalendarService} calendarService - calendar service provider.
+ * @property {Date} date - currently selected date.
+ * @property {Date} today - todays date.
+ */
+export type TProps = {
+  calendarService: ICalendarService;
+  date: Date;
+  today: Date;
+};
 
 /**
  * Component state.
@@ -15,7 +29,7 @@ export type TState = {
 /**
  * Event Time component.
  */
-export class EventTime extends React.Component<{}, TState> {
+export class EventTime extends React.Component<TProps, TState> {
   // @member {TState} state - component state.
   public state: TState = {
     open: false
@@ -36,12 +50,20 @@ export class EventTime extends React.Component<{}, TState> {
 
         <p>starts:</p>
         <div>
-          <TimePicker/>
+          <TimePicker
+            calendarService={ this.props.calendarService }
+            date={ this.props.date }
+            today={ this.props.today }
+          />
         </div>
 
         <p>ends:</p>
         <div>
-          <TimePicker/>
+          <TimePicker
+            calendarService={ this.props.calendarService }
+            date={ this.props.date }
+            today={ this.props.today }
+          />
         </div>
 
         <p>repeat:</p>

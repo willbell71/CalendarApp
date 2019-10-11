@@ -3,12 +3,13 @@ import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
 import { DayPage, TProps } from './day-page';
+
 import { calendarServiceMock } from '../mocks/calendar.service.mock';
 
 enzyme.configure({ adapter: new Adapter() });
 
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<{}, {}, DayPage>;
+let wrapper: enzyme.ShallowWrapper<TProps, {}, DayPage>;
 beforeEach(() => {
   props = {
     calendarService: calendarServiceMock,
