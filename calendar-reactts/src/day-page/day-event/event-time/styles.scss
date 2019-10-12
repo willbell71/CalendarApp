@@ -32,6 +32,11 @@ $color-white: #fff;
   }  
 }
 
+.event-time__open-title {
+  justify-self: flex-end;
+  margin-right: 8px;
+}
+
 .event-time__open-checkbox {
   appearance: none;
   background-color: $color-gray-800;
