@@ -42,13 +42,13 @@ export class EventTime extends React.Component<TProps, TState> {
   private renderOpen(): JSX.Element {
     return (
       <div className="event-time__open">
-        <p>all-day:</p>
+        <p className="event-time__open-title">all-day:</p>
         <input
           className="event-time__open-checkbox"
           type="checkbox"
         />
 
-        <p>starts:</p>
+        <p className="event-time__open-title">starts:</p>
         <div>
           <TimePicker
             calendarService={ this.props.calendarService }
@@ -57,7 +57,7 @@ export class EventTime extends React.Component<TProps, TState> {
           />
         </div>
 
-        <p>ends:</p>
+        <p className="event-time__open-title">ends:</p>
         <div>
           <TimePicker
             calendarService={ this.props.calendarService }
@@ -66,7 +66,7 @@ export class EventTime extends React.Component<TProps, TState> {
           />
         </div>
 
-        <p>repeat:</p>
+        <p className="event-time__open-title">repeat:</p>
         <div>
           <select
             className="event-time__open-select"
@@ -82,7 +82,7 @@ export class EventTime extends React.Component<TProps, TState> {
           </select>
         </div>
 
-        <p>travel time:</p>
+        <p className="event-time__open-title">travel time:</p>
         <div>
           <select
             className="event-time__open-select"
@@ -100,7 +100,7 @@ export class EventTime extends React.Component<TProps, TState> {
           </select>
         </div>
 
-        <p>alert:</p>
+        <p className="event-time__open-title">alert:</p>
         <select
           className="event-time__open-select"
           name=""
