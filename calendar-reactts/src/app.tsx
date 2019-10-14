@@ -44,6 +44,15 @@ class App extends React.Component<{}, TState> {
   }
 
   /**
+   * Set today.
+   */
+  private setToday: () => void = (): void => {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  /**
    * Render day component.
    * @return {JSX.Element} component render.
    */
@@ -58,7 +67,7 @@ class App extends React.Component<{}, TState> {
           showYear={ true }
           showDay={ true }
           prev={ () => {} }
-          today={ () => {} }
+          today={ this.setToday }
           next={ () => {} }
         />
         <DayPage
@@ -85,7 +94,7 @@ class App extends React.Component<{}, TState> {
           showYear={ true }
           showDay={ false }
           prev={ () => {} }
-          today={ () => {} }
+          today={ this.setToday }
           next={ () => {} }
         />
         <WeekPage
@@ -112,7 +121,7 @@ class App extends React.Component<{}, TState> {
           showYear={ true }
           showDay={ false }
           prev={ () => {} }
-          today={ () => {} }
+          today={ this.setToday }
           next={ () => {} }
         />
         <MonthPage
@@ -139,7 +148,7 @@ class App extends React.Component<{}, TState> {
           showYear={ true }
           showDay={ false }
           prev={ () => {} }
-          today={ () => {} }
+          today={ this.setToday }
           next={ () => {} }
         />
         <YearPage
