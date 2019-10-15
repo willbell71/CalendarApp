@@ -3,6 +3,7 @@ import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
 import { DateControl, TProps } from './date-control';
+import { EPeriod } from '../../EPeriod';
 
 enzyme.configure({ adapter: new Adapter() });
 
@@ -12,7 +13,8 @@ beforeEach(() => {
   props = {
     prev: jest.fn(),
     today: jest.fn(),
-    next: jest.fn()
+    next: jest.fn(),
+    period: EPeriod.eMonth
   };
 
   wrapper = enzyme.shallow(<DateControl {...props}/>);
@@ -29,6 +31,7 @@ describe('DateControl', () => {
     wrapper.find('button').at(0).simulate('click');
 
     expect(props.prev).toHaveBeenCalledTimes(1);
+    expect(props.prev).toHaveBeenCalledWith(EPeriod.eMonth);
   });
 
   it('should invoke today prop if today button is clicked', () => {
@@ -41,5 +44,6 @@ describe('DateControl', () => {
     wrapper.find('button').at(2).simulate('click');
 
     expect(props.next).toHaveBeenCalledTimes(1);
+    expect(props.next).toHaveBeenCalledWith(EPeriod.eMonth);
   });
 });

@@ -4,6 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { CalendarService } from './services/calendar/calendar-service';
 import { DayPage } from './day-page/day-page';
+import { EPeriod } from './EPeriod';
 import { ICalendarService } from './services/calendar/icalendar-service';
 import { MonthPage } from './month-page/month-page';
 import { NavBar } from './shared/nav-bar/nav-bar';
@@ -53,6 +54,18 @@ class App extends React.Component<{}, TState> {
   }
 
   /**
+   * Next date.
+   * @param {EPeriod} period - period to skip forward.
+   */
+  private nextDate: (period: EPeriod) => void = (period: EPeriod): void => {}
+
+  /**
+   * Previous date.
+   * @param {EPeriod} period - period to skip back.
+   */
+  private prevDate: (period: EPeriod) => void = (period: EPeriod): void => {}
+
+  /**
    * Render day component.
    * @return {JSX.Element} component render.
    */
@@ -66,9 +79,10 @@ class App extends React.Component<{}, TState> {
           showMonth={ true }
           showYear={ true }
           showDay={ true }
-          prev={ () => {} }
+          prev={ this.prevDate }
           today={ this.setToday }
-          next={ () => {} }
+          next={ this.nextDate }
+          period={ EPeriod.eDay }
         />
         <DayPage
           calendarService={ this.calendarService }
@@ -93,9 +107,10 @@ class App extends React.Component<{}, TState> {
           showMonth={ true }
           showYear={ true }
           showDay={ false }
-          prev={ () => {} }
+          prev={ this.prevDate }
           today={ this.setToday }
-          next={ () => {} }
+          next={ this.nextDate }
+          period={ EPeriod.eWeek }
         />
         <WeekPage
           date={ this.state.date }
@@ -120,9 +135,10 @@ class App extends React.Component<{}, TState> {
           showMonth={ true }
           showYear={ true }
           showDay={ false }
-          prev={ () => {} }
+          prev={ this.prevDate }
           today={ this.setToday }
-          next={ () => {} }
+          next={ this.nextDate }
+          period={ EPeriod.eMonth }
         />
         <MonthPage
           calendarService= { this.calendarService }
@@ -147,9 +163,10 @@ class App extends React.Component<{}, TState> {
           showMonth={ false }
           showYear={ true }
           showDay={ false }
-          prev={ () => {} }
+          prev={ this.prevDate }
           today={ this.setToday }
-          next={ () => {} }
+          next={ this.nextDate }
+          period={ EPeriod.eYear }
         />
         <YearPage
           date={ this.state.date }

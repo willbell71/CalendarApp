@@ -1,23 +1,41 @@
 import * as React from 'react';
 
+import { EPeriod } from '../../EPeriod';
+
 import './styles.scss';
 
 /**
  * Component properties.
- * @property {() => void} prev - previous click handler.
+ * @property {(EPeriod) => void} prev - previous click handler.
  * @property {() => void} today - today click handler.
- * @property {() => void} next - next click handler.
+ * @property {(EPeriod) => void} next - next click handler.
+ * @property {EPeriod} period - period for date control.
  */
 export type TProps = {
-  prev: () => void;
+  prev: (period: EPeriod) => void;
   today: () => void;
-  next: () => void;
+  next: (period: EPeriod) => void;
+  period: EPeriod;
 };
 
 /**
  * Date Control component.
  */
 export class DateControl extends React.Component<TProps> {
+  /**
+   * Previous date.
+   */
+  private prevDate: () => void = (): void => {
+    this.props.prev(this.props.period);
+  }
+
+  /**
+   * Nest date.
+   */
+  private nextDate: () => void = (): void => {
+    this.props.next(this.props.period);
+  }
+
   /**
    * Component render.
    * @return {JSX.Element} component rendner.
@@ -27,7 +45,7 @@ export class DateControl extends React.Component<TProps> {
       <div className="date-control__control-group">
         <button
           className="button"
-          onClick={ this.props.prev }
+          onClick={ this.prevDate }
         >&lt;</button>
 
         <button
@@ -37,7 +55,7 @@ export class DateControl extends React.Component<TProps> {
 
         <button
           className="button"
-          onClick={ this.props.next }
+          onClick={ this.nextDate }
         >&gt;</button>
       </div>
     );
