@@ -3,6 +3,7 @@ import * as React from 'react';
 import { DateControl } from '../date-control/date-control';
 import { DayOfMonth } from '../day-of-month/day-of-month';
 import { DayOfWeek } from '../day-of-week/day-of-week';
+import { EPeriod } from '../../EPeriod';
 import { ICalendarService } from '../../services/calendar/icalendar-service';
 import { MonthOfYear } from '../month-of-year/month-of-year';
 import { Year } from '../year/year';
@@ -17,9 +18,10 @@ import './styles.scss';
  * @property {boolean} showMonth? - show the month.
  * @property {boolean} showYear? - show the year.
  * @property {boolean} showDay? - show the day of the week.
- * @property {() => void} prev - previous date click handler.
+ * @property {(EPeriod) => void} prev - previous date click handler.
  * @property {() => void} today - previous date click handler.
- * @property {() => void} next - previous date click handler.
+ * @property {(EPeriod) => void} next - previous date click handler.
+ * @property {EPeriod} period - date period.
  */
 export type TProps = {
   calendarService: ICalendarService;
@@ -28,9 +30,10 @@ export type TProps = {
   showMonth?: boolean;
   showYear?: boolean;
   showDay?: boolean;
-  prev: () => void;
+  prev: (period: EPeriod) => void;
   today: () => void;
-  next: () => void;
+  next: (period: EPeriod) => void;
+  period: EPeriod;
 };
 
 /**
@@ -103,6 +106,7 @@ export class TitleBar extends React.Component<TProps> {
             prev={ this.props.prev }
             today={ this.props.today }
             next={ this.props.next }
+            period={ this.props.period }
           />
         </div>
       </div>

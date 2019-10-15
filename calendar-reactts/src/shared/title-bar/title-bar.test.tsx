@@ -3,6 +3,7 @@ import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
 import { calendarServiceMock } from '../../mocks/calendar.service.mock';
+import { EPeriod } from '../../EPeriod';
 import { TitleBar, TProps } from './title-bar';
 
 enzyme.configure({ adapter: new Adapter() });
@@ -19,7 +20,8 @@ beforeEach(() => {
     showDay: false,
     prev: jest.fn(),
     today: jest.fn(),
-    next: jest.fn()
+    next: jest.fn(),
+    period: EPeriod.eMonth
   };
 
   wrapper = enzyme.shallow(<TitleBar {...props}/>);
@@ -72,6 +74,7 @@ describe('TitleBar', () => {
 
   it('should render DateControl', () => {
     expect(wrapper.find('DateControl').length).toEqual(1);
+    expect(wrapper.find('DateControl').prop('period')).toEqual(EPeriod.eMonth);
   });
 
   it('should invoke prev prop on DateControl prev event', () => {
