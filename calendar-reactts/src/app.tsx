@@ -57,13 +57,41 @@ class App extends React.Component<{}, TState> {
    * Next date.
    * @param {EPeriod} period - period to skip forward.
    */
-  private nextDate: (period: EPeriod) => void = (period: EPeriod): void => {}
+  private nextDate: (period: EPeriod) => void = (period: EPeriod): void => {
+    const date: Date = this.state.date;
+
+    switch (period) {
+      case EPeriod.eDay: date.setDate(date.getDate() + 1); break;
+      case EPeriod.eWeek: date.setDate(date.getDate() + 7); break;
+      case EPeriod.eMonth: date.setMonth(date.getMonth() + 1); break;
+      case EPeriod.eYear: date.setFullYear(date.getFullYear() + 1); break;
+      default: break;
+    }
+
+    this.setState({
+      date
+    });
+  }
 
   /**
    * Previous date.
    * @param {EPeriod} period - period to skip back.
    */
-  private prevDate: (period: EPeriod) => void = (period: EPeriod): void => {}
+  private prevDate: (period: EPeriod) => void = (period: EPeriod): void => {
+    const date: Date = this.state.date;
+
+    switch (period) {
+      case EPeriod.eDay: date.setDate(date.getDate() - 1); break;
+      case EPeriod.eWeek: date.setDate(date.getDate() - 7); break;
+      case EPeriod.eMonth: date.setMonth(date.getMonth() - 1); break;
+      case EPeriod.eYear: date.setFullYear(date.getFullYear() - 1); break;
+      default: break;
+    }
+
+    this.setState({
+      date
+    });
+  }
 
   /**
    * Render day component.
