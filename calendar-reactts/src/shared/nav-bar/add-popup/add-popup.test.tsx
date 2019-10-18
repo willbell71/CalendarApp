@@ -14,6 +14,9 @@ afterEach(() => jest.restoreAllMocks());
 
 describe('AddPopup', () => {
   it('should render', () => {
-    expect(wrapper.find('div').length).toEqual(1);
+    expect(wrapper.find('section').length).toEqual(1);
+    expect(wrapper.find('label').length).toEqual(1);
+    expect(wrapper.find('h3').length).toEqual(1);
+    expect(wrapper.find('input').length).toEqual(1);
   });
 });
