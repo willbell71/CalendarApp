@@ -219,6 +219,7 @@ class App extends React.Component<{}, TState> {
         />
 
         <main
+          role="main"
           className="app__container"
         >
           <Switch>

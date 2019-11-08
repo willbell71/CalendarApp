@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -15,13 +16,16 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-    historyApiFallback: true
+    historyApiFallback: true,
+    host: '0.0.0.0'
   },
   module: {
     rules: [{
       test: /\.ts(x?)$/,
       exclude: /node_modules/,
       use: [{
+        loader: 'babel-loader'
+      }, {
         loader: 'ts-loader'
       }]
     }, {
