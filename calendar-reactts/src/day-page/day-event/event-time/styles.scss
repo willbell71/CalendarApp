@@ -19,25 +19,24 @@ $color-white: #fff;
 }
 
 .event-time__open {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
 
-  & > * {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
-  }
-  
   & > * {
     align-self: center;
+    margin-bottom: 8px;
+    width: 49%;
+
+    &:last-child,
+    &:nth-last-child(2) {
+      margin-bottom: 0px;
+    }
   }
 }
 
 .event-time__open-title {
-  justify-self: flex-end;
   margin-right: 8px;
+  text-align: right;
 }
 
 .event-time__open-checkbox {

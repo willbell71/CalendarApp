@@ -101,23 +101,25 @@ export class EventTime extends React.Component<TProps, TState> {
         </div>
 
         <p className="event-time__open-title">alert:</p>
-        <select
-          className="event-time__open-select"
-          name=""
-          id=""
-        >
-          <option value="">None</option>
-          <option value="">At time of event</option>
-          <option value="">5 minutes before</option>
-          <option value="">10 minutes before</option>
-          <option value="">15 minutes before</option>
-          <option value="">30 minutes before</option>
-          <option value="">1 hour before</option>
-          <option value="">2 hours before</option>
-          <option value="">1 day before</option>
-          <option value="">2 days before</option>
-          <option value="">Custom...</option>
-        </select>
+        <div>
+          <select
+            className="event-time__open-select"
+            name=""
+            id=""
+          >
+            <option value="">None</option>
+            <option value="">At time of event</option>
+            <option value="">5 minutes before</option>
+            <option value="">10 minutes before</option>
+            <option value="">15 minutes before</option>
+            <option value="">30 minutes before</option>
+            <option value="">1 hour before</option>
+            <option value="">2 hours before</option>
+            <option value="">1 day before</option>
+            <option value="">2 days before</option>
+            <option value="">Custom...</option>
+          </select>
+        </div>
       </div>
     );
   }
