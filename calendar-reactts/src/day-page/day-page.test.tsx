@@ -24,7 +24,7 @@ afterEach(() => jest.restoreAllMocks());
 describe('DayPage', () => {
   it('should render', () => {
     expect(wrapper.find('p').length).toEqual(25);
-    expect(wrapper.find('div').length).toEqual(25 + 5);
+    expect(wrapper.find('div').length).toEqual(25 + 25 + 5);
     expect(wrapper.find('Month').length).toEqual(1);
     expect(wrapper.find('DayEvent').length).toEqual(1);
   });
@@ -68,14 +68,14 @@ describe('DayPage', () => {
     props.date = new Date(2019, 9, 5);
     wrapper = enzyme.shallow(<DayPage {...props}/>);
 
-    expect(wrapper.find('div').at(2).hasClass('day-page__cell--weekend')).toBeTruthy();
+    expect(wrapper.find('div').at(3).hasClass('day-page__cell--weekend')).toBeTruthy();
   });
 
   it('should render weekend for sun', () => {
     props.date = new Date(2019, 9, 6);
     wrapper = enzyme.shallow(<DayPage {...props}/>);
 
-    expect(wrapper.find('div').at(2).hasClass('day-page__cell--weekend')).toBeTruthy();
+    expect(wrapper.find('div').at(3).hasClass('day-page__cell--weekend')).toBeTruthy();
   });
 
   it('should render now', () => {
@@ -83,8 +83,8 @@ describe('DayPage', () => {
     expect(wrapper.find('p').at(3).hasClass('day-page__time--now')).toBeTruthy();
     expect(wrapper.find('p').at(4).hasClass('day-page__time--now')).toBeFalsy();
 
-    expect(wrapper.find('div').at(4).hasClass('day-page__cell--now')).toBeFalsy();
-    expect(wrapper.find('div').at(5).hasClass('day-page__cell--now')).toBeTruthy();
-    expect(wrapper.find('div').at(6).hasClass('day-page__cell--now')).toBeFalsy();
+    expect(wrapper.find('div').at(7).hasClass('day-page__cell--now')).toBeFalsy();
+    expect(wrapper.find('div').at(9).hasClass('day-page__cell--now')).toBeTruthy();
+    expect(wrapper.find('div').at(11).hasClass('day-page__cell--now')).toBeFalsy();
   });
 });
