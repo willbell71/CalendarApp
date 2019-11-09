@@ -24,7 +24,7 @@ describe('EventTime', () => {
   it('should render', () => {
     wrapper.setState({open: true});
 
-    expect(wrapper.find('div').length).toEqual(6);
+    expect(wrapper.find('div').length).toEqual(7);
     expect(wrapper.find('p').length).toEqual(6);
     expect(wrapper.find('input').length).toEqual(1);
     expect(wrapper.find('TimePicker').length).toEqual(2);
