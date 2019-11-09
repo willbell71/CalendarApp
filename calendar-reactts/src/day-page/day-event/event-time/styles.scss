@@ -19,7 +19,6 @@ $color-white: #fff;
 }
 
 .event-time__open {
-  align-items: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
@@ -29,7 +28,11 @@ $color-white: #fff;
     &:last-child {
       margin-bottom: 0px;
     }
-  }  
+  }
+  
+  & > * {
+    align-self: center;
+  }
 }
 
 .event-time__open-title {

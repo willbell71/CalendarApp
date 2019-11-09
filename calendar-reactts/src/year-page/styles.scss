@@ -1,26 +1,108 @@
 .year-page {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template:
+    "january february march april may june july august september october november december" /
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
   margin-top: 16px;
 
   @media screen and (max-width: 2888px) {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template:
+      "january february march april may june"
+      "july august september october november december" /
+      1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
   @media screen and (max-width: 1436px) {
-    grid-template-columns: repeat(4, 1fr);    
+    grid-template:
+      "january february march april"
+      "may june july august"
+      "september october november december" /
+      1fr 1fr 1fr 1fr;
   }
 
   @media screen and (max-width: 952px) {
-    grid-template-columns: repeat(3, 1fr);    
+    grid-template:
+      "january february march"
+      "april may june"
+      "july august september"
+      "october november december" /
+      1fr 1fr 1fr;
   }
 
   @media screen and (max-width: 710px) {
-    grid-template-columns: repeat(2, 1fr);    
+    grid-template:
+      "january february"
+      "march april"
+      "may june"
+      "july august"
+      "september october"
+      "november december" /
+      1fr 1fr;
   }
 
   @media screen and (max-width: 468px) {
-    grid-template-columns: repeat(1, 1fr);    
+    grid-template:
+      "january"
+      "february"
+      "march"
+      "april"
+      "may"
+      "june"
+      "july"
+      "august"
+      "september"
+      "october"
+      "november"
+      "december" /
+      1fr;
   }
+}
+
+.year-page__cell--january {
+  grid-area: january;
+}
+
+.year-page__cell--february {
+  grid-area: february;
+}
+
+.year-page__cell--march {
+  grid-area: march;
+}
+
+.year-page__cell--april {
+  grid-area: april;
+}
+
+.year-page__cell--may {
+  grid-area: may;
+}
+
+.year-page__cell--june {
+  grid-area: june;
+}
+
+.year-page__cell--july {
+  grid-area: july;
+}
+
+.year-page__cell--august {
+  grid-area: august;
+}
+
+.year-page__cell--september {
+  grid-area: september;
+}
+
+.year-page__cell--october {
+  grid-area: october;
+}
+
+.year-page__cell--november {
+  grid-area: november;
+}
+
+.year-page__cell--december {
+  grid-area: december;
 }

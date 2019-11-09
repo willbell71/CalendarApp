@@ -12,8 +12,6 @@ $color-white: #ffffff;
 }
 
 .day-page__times {
-  display: grid;
-  grid-template-columns: 55px 1fr;
   width: 50%;
 }
 
@@ -26,9 +24,14 @@ $color-white: #ffffff;
   max-width: 260px;
 }
 
+.day-page__times-row {
+  display: flex;
+}
+
 .day-page__time {
   border-top: 1px solid $color-gray-800;
   color: $color-gray-700;
+  width: 55px;
 }
 
 .day-page__time--now {
@@ -38,6 +41,7 @@ $color-white: #ffffff;
 .day-page__cell {
   border: 1px solid $color-gray-800;
   height: 64px;
+  width: 100%;
 }
 
 .day-page__cell--now {

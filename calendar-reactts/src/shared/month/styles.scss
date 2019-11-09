@@ -6,14 +6,15 @@ $color-gray-900: #1A202C;
 $color-red-500: #F56565;
 
 .month {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .month__cell {
   align-items: center;
   color: $color-gray-300;
   display: flex;
+  flex: 0 0 14%;
   height: 28px;
   justify-content: center;
   user-select: none;

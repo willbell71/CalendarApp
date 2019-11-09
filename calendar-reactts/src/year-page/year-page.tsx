@@ -39,6 +39,7 @@ export class YearPage extends React.Component<TProps> {
           return (
             <div
               key={ index }
+              className={`year-page__cell--${this.props.calendarService.getMonthName(month).toLowerCase()}`}
             >
               <MonthOfYear
                 date={ calendarMonths }
