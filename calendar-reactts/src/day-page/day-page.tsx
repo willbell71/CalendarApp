@@ -41,8 +41,9 @@ export class DayPage extends React.Component<TProps> {
             const now: boolean = this.props.today.getHours() === index - 1;
 
             return (
-              <React.Fragment
+              <div
                 key={ index }
+                className="day-page__times-row"
               >
                 <p
                   className={ `day-page__time ${now ? 'day-page__time--now' : ''}` }
@@ -50,7 +51,7 @@ export class DayPage extends React.Component<TProps> {
                 <div
                   className={ `day-page__cell ${isWeekend ? 'day-page__cell--weekend' : ''} ${now ? 'day-page__cell--now' : ''}` }
                 />
-              </React.Fragment>
+              </div>
             );
           })}
         </div>
