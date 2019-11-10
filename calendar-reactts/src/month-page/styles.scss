@@ -6,23 +6,29 @@ $color-gray-900: #1A202C;
 $color-red-500: #F56565;
 
 .month-page {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 16px;
 }
 
 .month-page__date {
+  flex: 0 0 14.28%;
   height: 24px;
-  justify-self: flex-end;
   padding: 0 8px;
+  // ie11 work around, doesn't respect border-box with flex children
+  max-width: 14.28%;
+  text-align: right;
 }
 
 .month-page__cell {
   border: 1px solid rgba(0, 0, 0, .3);
   color: $color-gray-300;
   display: flex;
+  flex: 0 0 14.28%;
   flex-direction: column;
   height: 120px;
+  // ie11 work around, doesn't respect border-box with flex children
+  max-width: 14.28%;
   padding: 4px 12px;
 }
 

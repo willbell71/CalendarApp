@@ -218,7 +218,7 @@ class App extends React.Component<{}, TState> {
           search={ () => {} }
         />
 
-        <main
+        <div
           role="main"
           className="app__container"
         >
@@ -249,7 +249,7 @@ class App extends React.Component<{}, TState> {
               to="/year"
             />
           </Switch>
-        </main>
+        </div>
       </BrowserRouter>
     );
   }
