@@ -8,9 +8,15 @@ $color-red-500: #F56565;
 $color-white: #ffffff;
 
 .week-page {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 16px;
-  grid-template-columns: repeat(8, 1fr);
+
+  & > * {
+    flex: 0 0 12.5%;
+    // ie11 work around, box-sizing isn't respected for flex children
+    max-width: 12.5%;
+  }
 }
 
 .week-page__day {
