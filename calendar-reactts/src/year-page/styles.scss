@@ -59,50 +59,9 @@
   }
 }
 
-.year-page__cell--january {
-  grid-area: january;
-}
-
-.year-page__cell--february {
-  grid-area: february;
-}
-
-.year-page__cell--march {
-  grid-area: march;
-}
-
-.year-page__cell--april {
-  grid-area: april;
-}
-
-.year-page__cell--may {
-  grid-area: may;
-}
-
-.year-page__cell--june {
-  grid-area: june;
-}
-
-.year-page__cell--july {
-  grid-area: july;
-}
-
-.year-page__cell--august {
-  grid-area: august;
-}
-
-.year-page__cell--september {
-  grid-area: september;
-}
-
-.year-page__cell--october {
-  grid-area: october;
-}
-
-.year-page__cell--november {
-  grid-area: november;
-}
-
-.year-page__cell--december {
-  grid-area: december;
+$months: january february march april may june july august september october november december;
+@each $month in $months {
+  .year-page__cell--#{$month} {
+    grid-area: $month;
+  }  
 }
