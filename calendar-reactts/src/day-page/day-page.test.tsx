@@ -1,90 +1,103 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { DayPage, TProps } from './day-page';
 
 import { calendarServiceMock } from '../mocks/calendar.service.mock';
 
-enzyme.configure({ adapter: new Adapter() });
-
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<TProps, {}, DayPage>;
-beforeEach(() => {
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
   props = {
     calendarService: calendarServiceMock,
     date: new Date(),
     today: new Date('2019-10-01T02:10:00.000')
   };
 
-  wrapper = enzyme.shallow(<DayPage {...props}/>);
+  await act(async () => {
+    renderer = create(
+      <DayPage { ...props } />
+    );
+  });
+
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('DayPage', () => {
   it('should render', () => {
-    expect(wrapper.find('p').length).toEqual(25);
-    expect(wrapper.find('div').length).toEqual(25 + 25 + 5);
-    expect(wrapper.find('Month').length).toEqual(1);
-    expect(wrapper.find('DayEvent').length).toEqual(1);
+    expect(instance).toBeTruthy();
   });
 
   it('should render times', () => {
-    expect(wrapper.find('p').at(0).text()).toEqual('All Day');
-    expect(wrapper.find('p').at(1).text()).toEqual('00:00');
-    expect(wrapper.find('p').at(2).text()).toEqual('01:00');
-    expect(wrapper.find('p').at(3).text()).toEqual('02:00');
-    expect(wrapper.find('p').at(4).text()).toEqual('03:00');
-    expect(wrapper.find('p').at(5).text()).toEqual('04:00');
-    expect(wrapper.find('p').at(6).text()).toEqual('05:00');
-    expect(wrapper.find('p').at(7).text()).toEqual('06:00');
-    expect(wrapper.find('p').at(8).text()).toEqual('07:00');
-    expect(wrapper.find('p').at(9).text()).toEqual('08:00');
-    expect(wrapper.find('p').at(10).text()).toEqual('09:00');
-    expect(wrapper.find('p').at(11).text()).toEqual('10:00');
-    expect(wrapper.find('p').at(12).text()).toEqual('11:00');
-    expect(wrapper.find('p').at(13).text()).toEqual('12:00');
-    expect(wrapper.find('p').at(14).text()).toEqual('13:00');
-    expect(wrapper.find('p').at(15).text()).toEqual('14:00');
-    expect(wrapper.find('p').at(16).text()).toEqual('15:00');
-    expect(wrapper.find('p').at(17).text()).toEqual('16:00');
-    expect(wrapper.find('p').at(18).text()).toEqual('17:00');
-    expect(wrapper.find('p').at(19).text()).toEqual('18:00');
-    expect(wrapper.find('p').at(20).text()).toEqual('19:00');
-    expect(wrapper.find('p').at(21).text()).toEqual('20:00');
-    expect(wrapper.find('p').at(22).text()).toEqual('21:00');
-    expect(wrapper.find('p').at(23).text()).toEqual('22:00');
-    expect(wrapper.find('p').at(24).text()).toEqual('23:00');
+    const times: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-time' });
+
+    expect(times[0].props.children).toEqual('All Day');
+    expect(times[1].props.children).toEqual('00:00');
+    expect(times[2].props.children).toEqual('01:00');
+    expect(times[3].props.children).toEqual('02:00');
+    expect(times[4].props.children).toEqual('03:00');
+    expect(times[5].props.children).toEqual('04:00');
+    expect(times[6].props.children).toEqual('05:00');
+    expect(times[7].props.children).toEqual('06:00');
+    expect(times[8].props.children).toEqual('07:00');
+    expect(times[9].props.children).toEqual('08:00');
+    expect(times[10].props.children).toEqual('09:00');
+    expect(times[11].props.children).toEqual('10:00');
+    expect(times[12].props.children).toEqual('11:00');
+    expect(times[13].props.children).toEqual('12:00');
+    expect(times[14].props.children).toEqual('13:00');
+    expect(times[15].props.children).toEqual('14:00');
+    expect(times[16].props.children).toEqual('15:00');
+    expect(times[17].props.children).toEqual('16:00');
+    expect(times[18].props.children).toEqual('17:00');
+    expect(times[19].props.children).toEqual('18:00');
+    expect(times[20].props.children).toEqual('19:00');
+    expect(times[21].props.children).toEqual('20:00');
+    expect(times[22].props.children).toEqual('21:00');
+    expect(times[23].props.children).toEqual('22:00');
+    expect(times[24].props.children).toEqual('23:00');
   });
 
-  it('shouldnt render weekend for mon', () => {
+  it('should NOT render weekend for mon', async () => {
     props.date = new Date(2019, 8, 30);
-    wrapper = enzyme.shallow(<DayPage {...props}/>);
 
-    expect(wrapper.find('div').at(2).hasClass('day-page__cell--weekend')).toBeFalsy();
+    await act(async () => renderer.update(<DayPage { ...props } />));
+
+    const weekends: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-weekend' });
+    expect(weekends[0].props.className.includes('day-page__cell--weekend')).toBeFalsy();
   });
 
-  it('should render weekend for sat', () => {
+  it('should render weekend for sat', async () => {
     props.date = new Date(2019, 9, 5);
-    wrapper = enzyme.shallow(<DayPage {...props}/>);
 
-    expect(wrapper.find('div').at(3).hasClass('day-page__cell--weekend')).toBeTruthy();
+    await act(async () => renderer.update(<DayPage { ...props } />));
+
+    const weekends: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-weekend' });
+    expect(weekends[0].props.className.includes('day-page__cell--weekend')).toBeTruthy();
   });
 
-  it('should render weekend for sun', () => {
+  it('should render weekend for sun', async () => {
     props.date = new Date(2019, 9, 6);
-    wrapper = enzyme.shallow(<DayPage {...props}/>);
 
-    expect(wrapper.find('div').at(3).hasClass('day-page__cell--weekend')).toBeTruthy();
+    await act(async () => renderer.update(<DayPage { ...props } />));
+
+    const weekends: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-weekend' });
+    expect(weekends[0].props.className.includes('day-page__cell--weekend')).toBeTruthy();
   });
 
   it('should render now', () => {
-    expect(wrapper.find('p').at(2).hasClass('day-page__time--now')).toBeFalsy();
-    expect(wrapper.find('p').at(3).hasClass('day-page__time--now')).toBeTruthy();
-    expect(wrapper.find('p').at(4).hasClass('day-page__time--now')).toBeFalsy();
+    const times: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-time' });
 
-    expect(wrapper.find('div').at(7).hasClass('day-page__cell--now')).toBeFalsy();
-    expect(wrapper.find('div').at(9).hasClass('day-page__cell--now')).toBeTruthy();
-    expect(wrapper.find('div').at(11).hasClass('day-page__cell--now')).toBeFalsy();
+    expect(times[2].props.className.includes('day-page__time--now')).toBeFalsy();
+    expect(times[3].props.className.includes('day-page__time--now')).toBeTruthy();
+    expect(times[4].props.className.includes('day-page__time--now')).toBeFalsy();
+
+    const weekends: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'day-page-weekend' });
+
+    expect(weekends[2].props.className.includes('day-page__cell--now')).toBeFalsy();
+    expect(weekends[3].props.className.includes('day-page__cell--now')).toBeTruthy();
+    expect(weekends[4].props.className.includes('day-page__cell--now')).toBeFalsy();
   });
 });

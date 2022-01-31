@@ -1,16 +1,14 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { calendarServiceMock } from '../../mocks/calendar.service.mock';
 import { EPeriod } from '../../EPeriod';
 import { TitleBar, TProps } from './title-bar';
 
-enzyme.configure({ adapter: new Adapter() });
-
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<{}, {}, TitleBar>;
-beforeEach(() => {
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
   props = {
     calendarService: calendarServiceMock,
     date: new Date(2019, 8, 28),
@@ -24,73 +22,95 @@ beforeEach(() => {
     period: EPeriod.eMonth
   };
 
-  wrapper = enzyme.shallow(<TitleBar {...props}/>);
+  await act(async () => {
+    renderer = create(
+      <TitleBar { ...props } />
+    );
+  });
+
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('TitleBar', () => {
   it('should render', () => {
-    expect(wrapper.find('h1').length).toEqual(1);
+    expect(instance).toBeTruthy();
   });
 
-  it('shouldnt render any elements', () => {
-    expect(wrapper.find('DayOfMonth').length).toEqual(0);
-    expect(wrapper.find('MonthOfYear').length).toEqual(0);
-    expect(wrapper.find('Year').length).toEqual(0);
-    expect(wrapper.find('DayOfWeek').length).toEqual(0);
+  it('should NOT render any elements', () => {
+    const daysOfMonth: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-day-of-month' });
+    const monthsOfYear: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-month-of-year' });
+    const years: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-year' });
+    const daysOfWeek: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-day-of-week' });
+
+    expect(daysOfMonth.length).toEqual(0);
+    expect(monthsOfYear.length).toEqual(0);
+    expect(years.length).toEqual(0);
+    expect(daysOfWeek.length).toEqual(0);
   });
 
-  it('should render date', () => {
-    wrapper.setProps({
-      showDate: true
-    });
+  it('should render date', async () => {
+    props.showDate = true;
 
-    expect(wrapper.find('DayOfMonth').length).toEqual(1);
+    await act(async () => renderer.update(<TitleBar { ...props } />));
+
+    const daysOfMonth: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-day-of-month' });
+    expect(daysOfMonth.length).toEqual(1);
   });
 
-  it('should render month', () => {
-    wrapper.setProps({
-      showMonth: true
-    });
+  it('should render month', async () => {
+    props.showMonth = true;
 
-    expect(wrapper.find('MonthOfYear').length).toEqual(1);
+    await act(async () => renderer.update(<TitleBar { ...props } />));
+
+    const monthsOfYear: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-month-of-year' });
+    expect(monthsOfYear.length).toEqual(1);
   });
 
-  it('should render year', () => {
-    wrapper.setProps({
-      showYear: true
-    });
+  it('should render year', async () => {
+    props.showYear = true;
 
-    expect(wrapper.find('Year').length).toEqual(1);
+    await act(async () => renderer.update(<TitleBar { ...props } />));
+
+    const years: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-year' });
+    expect(years.length).toEqual(1);
   });
 
-  it('should render day', () => {
-    wrapper.setProps({
-      showDay: true
-    });
+  it('should render day', async () => {
+    props.showDay = true;
 
-    expect(wrapper.find('DayOfWeek').length).toEqual(1);
+    await act(async () => renderer.update(<TitleBar { ...props } />));
+
+    const daysOfWeek: ReactTestInstance[] = instance.findAllByProps({ 'data-testid': 'title-bar-day-of-week' });
+    expect(daysOfWeek.length).toEqual(1);
   });
 
   it('should render DateControl', () => {
-    expect(wrapper.find('DateControl').length).toEqual(1);
-    expect(wrapper.find('DateControl').prop('period')).toEqual(EPeriod.eMonth);
+    const dateControl: ReactTestInstance = instance.findByProps({ 'data-testid': 'title-bar-date-control' });
+
+    expect(dateControl.props.period).toEqual(EPeriod.eMonth);
   });
 
-  it('should invoke prev prop on DateControl prev event', () => {
-    (wrapper.find('DateControl').prop('prev') as () => void)();
+  it('should invoke prev prop on DateControl prev event', async () => {
+    const dateControl: ReactTestInstance = instance.findByProps({ 'data-testid': 'title-bar-date-control' });
+
+    await act(async () => dateControl.props.prev());
 
     expect(props.prev).toHaveBeenCalledTimes(1);
   });
 
-  it('should invoke today prop on DateControl today event', () => {
-    (wrapper.find('DateControl').prop('today') as () => void)();
+  it('should invoke today prop on DateControl today event', async () => {
+    const dateControl: ReactTestInstance = instance.findByProps({ 'data-testid': 'title-bar-date-control' });
+
+    await act(async () => dateControl.props.today());
 
     expect(props.today).toHaveBeenCalledTimes(1);
   });
 
-  it('should invoke next prop on DateControl next event', () => {
-    (wrapper.find('DateControl').prop('next') as () => void)();
+  it('should invoke next prop on DateControl next event', async () => {
+    const dateControl: ReactTestInstance = instance.findByProps({ 'data-testid': 'title-bar-date-control' });
+
+    await act(async () => dateControl.props.next());
 
     expect(props.next).toHaveBeenCalledTimes(1);
   });
