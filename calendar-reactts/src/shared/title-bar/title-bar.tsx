@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { DateControl } from '../date-control/date-control';
 import { DayOfMonth } from '../day-of-month/day-of-month';
@@ -39,77 +39,85 @@ export type TProps = {
 /**
  * Title Bar component.
  */
-export class TitleBar extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <div
-        className="title-bar"
+export const TitleBar: FC<TProps> = ({
+  calendarService,
+  date,
+  showDate,
+  showMonth,
+  showYear,
+  showDay,
+  prev,
+  today,
+  next,
+  period
+}: TProps): JSX.Element => (
+  <div
+    className="title-bar"
+  >
+    <div>
+      <h1
+        className="title-bar__date"
       >
-        <div>
-          <h1
-            className="title-bar__date"
+        { showDate &&
+          <span
+            className="title-bar__element"
           >
-            { this.props.showDate &&
-              <span
-                className="title-bar__element"
-              >
-                <DayOfMonth
-                  date={ this.props.date }
-                />
-              </span>
-            }
-            { this.props.showMonth &&
-              <span
-                className="title-bar__element"
-              >
-                <MonthOfYear
-                  date={ this.props.date }
-                  calendarService={ this.props.calendarService }
-                />
-              </span>
-            }
-            { this.props.showYear &&
-              <span
-                className="title-bar__element title-bar__element--faint"
-              >
-                <Year
-                  date={ this.props.date }
-                />
-              </span>
-            }
-          </h1>
+            <DayOfMonth
+              date={ date }
+              data-testid="title-bar-day-of-month"
+            />
+          </span>
+        }
+        { showMonth &&
+          <span
+            className="title-bar__element"
+          >
+            <MonthOfYear
+              date={ date }
+              calendarService={ calendarService }
+              data-testid="title-bar-month-of-year"
+            />
+          </span>
+        }
+        { showYear &&
+          <span
+            className="title-bar__element title-bar__element--faint"
+          >
+            <Year
+              date={ date }
+              data-testid="title-bar-year"
+            />
+          </span>
+        }
+      </h1>
 
-          <p>
-            { this.props.showDay &&
-              <span>
-                <DayOfWeek
-                  date={ this.props.date }
-                  calendarService={ this.props.calendarService }
-                />
-              </span>
-            }
-          </p>
-        </div>
+      <p>
+        { showDay &&
+          <span>
+            <DayOfWeek
+              date={ date }
+              calendarService={ calendarService }
+              data-testid="title-bar-day-of-week"
+            />
+          </span>
+        }
+      </p>
+    </div>
 
-        <div
-          className="title-bar__spacer"
-        />
+    <div
+      className="title-bar__spacer"
+    />
 
-        <div
-          className="title-bar__controls"
-        >
-          <DateControl
-            prev={ this.props.prev }
-            today={ this.props.today }
-            next={ this.props.next }
-            period={ this.props.period }
-          />
-        </div>
-      </div>
-    );
-  }
-}
+    <div
+      className="title-bar__controls"
+    >
+      <DateControl
+        prev={ prev }
+        today={ today }
+        next={ next }
+        period={ period }
+        data-testid="title-bar-date-control"
+      />
+    </div>
+  </div>
+);

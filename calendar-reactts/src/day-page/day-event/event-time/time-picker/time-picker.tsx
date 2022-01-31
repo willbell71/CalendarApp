@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ICalendarService } from '../../../../services/calendar/icalendar-service';
 import { Month } from '../../../../shared/month/month';
@@ -37,7 +37,7 @@ export class TimePicker extends React.Component<TProps, TState> {
   /**
    * Toggle component open state.
    */
-  private toggle = () => {
+  private toggle: () => void = () => {
     this.setState((state: TState) => ({
       open: !state.open
     }));
@@ -46,9 +46,12 @@ export class TimePicker extends React.Component<TProps, TState> {
   /**
    * Render component when open.
    */
-  private renderOpen = () => {
+  private renderOpen: () => void = () => {
     return (
-      <div className="time-picker__month-view">
+      <div
+        className="time-picker__month-view"
+        data-testid="time-picker-open"
+      >
         <Month
           calendarService={ this.props.calendarService }
           date={ this.props.date }
@@ -61,12 +64,21 @@ export class TimePicker extends React.Component<TProps, TState> {
   /**
    * Render component when closed.
    */
-  private renderTime = () => {
+  private renderTime: () => JSX.Element = () => {
     return (
-    <p>
-      <span>{`0${this.props.date.getDate()}`.slice(-2)}/{`0${this.props.date.getMonth() + 1}`.slice(-2)}/{this.props.date.getFullYear()}</span>
-      <span className="time-picker__date-view-time">{`0${this.props.date.getHours()}`.slice(-2)}:{`0${this.props.date.getMinutes()}`.slice(-2)}</span>
-    </p>
+      <p>
+        <span
+          data-testid="time-picker-date"
+        >
+          {`0${this.props.date.getDate()}`.slice(-2)}/{`0${this.props.date.getMonth() + 1}`.slice(-2)}/{this.props.date.getFullYear()}
+        </span>
+        <span
+          className="time-picker__date-view-time"
+          data-testid="time-picker-time"
+        >
+          {`0${this.props.date.getHours()}`.slice(-2)}:{`0${this.props.date.getMinutes()}`.slice(-2)}
+        </span>
+      </p>
     );
   };
 
@@ -79,6 +91,7 @@ export class TimePicker extends React.Component<TProps, TState> {
       <div
         className="time-picker"
         onClick={ this.toggle }
+        data-testid="time-picker-toggle"
       >
         {this.renderTime()}
         {this.state.open && this.renderOpen()}

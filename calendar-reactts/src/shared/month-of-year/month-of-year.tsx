@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { ICalendarService } from '../../services/calendar/icalendar-service';
 
@@ -15,14 +15,6 @@ export type TProps = {
 /**
  * Month Of Year component.
  */
-export class MonthOfYear extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <>{ this.props.calendarService.getMonthName(this.props.date.getMonth()) }</>
-    );
-  }
-}
+export const MonthOfYear: FC<TProps> = ({ calendarService, date }: TProps): JSX.Element => (
+  <>{ calendarService.getMonthName(date.getMonth()) }</>
+);

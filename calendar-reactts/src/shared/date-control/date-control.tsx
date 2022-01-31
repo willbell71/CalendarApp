@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { EPeriod } from '../../EPeriod';
 
@@ -27,14 +27,14 @@ export class DateControl extends React.Component<TProps> {
    */
   private prevDate: () => void = (): void => {
     this.props.prev(this.props.period);
-  }
+  };
 
   /**
    * Nest date.
    */
   private nextDate: () => void = (): void => {
     this.props.next(this.props.period);
-  }
+  };
 
   /**
    * Component render.
@@ -46,17 +46,26 @@ export class DateControl extends React.Component<TProps> {
         <button
           className="button"
           onClick={ this.prevDate }
-        >&lt;</button>
+          data-testid="date-control-button-prev"
+        >
+          &lt;
+        </button>
 
         <button
           className="button"
           onClick={ this.props.today }
-        >Today</button>
+          data-testid="date-control-button-today"
+        >
+          Today
+        </button>
 
         <button
           className="button"
           onClick={ this.nextDate }
-        >&gt;</button>
+          data-testid="date-control-button-next"
+        >
+          &gt;
+        </button>
       </div>
     );
   }
