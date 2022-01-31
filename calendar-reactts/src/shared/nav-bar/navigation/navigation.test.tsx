@@ -1,35 +1,46 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { Navigation } from './navigation';
 
-enzyme.configure({ adapter: new Adapter() });
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
+  await act(async () => {
+    renderer = create(
+      <MemoryRouter>
+        <Navigation />
+      </MemoryRouter>
+    );
+  });
 
-let wrapper: enzyme.ShallowWrapper<{}, {}, Navigation>;
-beforeEach(() => {
-  wrapper = enzyme.shallow(<Navigation/>);
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('Navigation', () => {
   it('should render', () => {
-    expect(wrapper.find('Link').length).toEqual(4);
+    expect(instance).toBeTruthy();
   });
 
   it('should link to day', () => {
-    expect(wrapper.find('Link').at(0).prop('to')).toEqual('/day');
+    const link: ReactTestInstance = instance.findByProps({ 'data-testid': 'navigation-day' });
+    expect(link.props.to).toEqual('/day');
   });
 
   it('should link to week', () => {
-    expect(wrapper.find('Link').at(1).prop('to')).toEqual('/week');
+    const link: ReactTestInstance = instance.findByProps({ 'data-testid': 'navigation-week' });
+    expect(link.props.to).toEqual('/week');
   });
 
   it('should link to month', () => {
-    expect(wrapper.find('Link').at(2).prop('to')).toEqual('/month');
+    const link: ReactTestInstance = instance.findByProps({ 'data-testid': 'navigation-month' });
+    expect(link.props.to).toEqual('/month');
   });
 
   it('should link to year', () => {
-    expect(wrapper.find('Link').at(3).prop('to')).toEqual('/year');
+    const link: ReactTestInstance = instance.findByProps({ 'data-testid': 'navigation-year' });
+    expect(link.props.to).toEqual('/year');
   });
 });

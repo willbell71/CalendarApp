@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { ICalendarService } from '../services/calendar/icalendar-service';
 import { Month } from '../shared/month/month';
@@ -21,39 +21,35 @@ export type TProps = {
 /**
  * Year page component.
  */
-export class YearPage extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    const months: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+export const YearPage: FC<TProps> = ({ calendarService, date, today }: TProps): JSX.Element => {
+  const months: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-    return (
-      <div
-        className="year-page"
-      >
-        {months.map((month: number, index: number) => {
-          const calendarMonths: Date = new Date(this.props.date.getFullYear(), month, 1);
+  return (
+    <div
+      className="year-page"
+    >
+      {months.map((month: number, index: number) => {
+        const calendarMonths: Date = new Date(date.getFullYear(), month, 1);
 
-          return (
-            <div
-              key={ index }
-              className={`year-page__cell--${this.props.calendarService.getMonthName(month).toLowerCase()}`}
-            >
-              <MonthOfYear
-                date={ calendarMonths }
-                calendarService= { this.props.calendarService }
-              />
-              <Month
-                date={ calendarMonths }
-                calendarService= { this.props.calendarService }
-                today={ this.props.today }
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
+        return (
+          <div
+            key={ index }
+            className={`year-page__cell--${calendarService.getMonthName(month).toLowerCase()}`}
+          >
+            <MonthOfYear
+              date={ calendarMonths }
+              calendarService= { calendarService }
+              data-testid="year-page-month-of-year"
+            />
+            <Month
+              date={ calendarMonths }
+              calendarService= { calendarService }
+              today={ today }
+              data-testid="year-page-month"
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};

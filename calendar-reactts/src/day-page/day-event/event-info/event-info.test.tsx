@@ -1,27 +1,31 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { EventInfo, TState } from './event-info';
 
-enzyme.configure({ adapter: new Adapter() });
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
+  await act(async () => {
+    renderer = create(
+      <EventInfo />
+    );
+  });
 
-let wrapper: enzyme.ShallowWrapper<{}, TState, EventInfo>;
-beforeEach(() => {
-  wrapper = enzyme.shallow(<EventInfo/>);
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('EventInfo', () => {
   it('should render', () => {
-    wrapper.setState({open: true});
-
-    expect(wrapper.find('input').length).toEqual(3);
+    expect(instance).toBeTruthy();
   });
 
-  it('should change state when opened', () => {
-    wrapper.find('div').at(0).simulate('click');
+  it('should change state when opened', async() => {
+    const eventInfo: ReactTestInstance = instance.findByProps({ 'data-testid': 'event-info' });
+    await act(async () => eventInfo.props.onClick());
 
-    expect(wrapper.state().open).toEqual(true);
+    const open: ReactTestInstance = instance.findByProps({ 'data-testid': 'event-info-open' });
+    expect(open).toBeTruthy();
   });
 });

@@ -1,24 +1,32 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { Year, TProps } from './year';
 
-enzyme.configure({ adapter: new Adapter() });
-
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<{}, {}, Year>;
-beforeEach(() => {
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
   props = {
     date: new Date(2019, 8, 28)
   };
 
-  wrapper = enzyme.shallow(<Year {...props}/>);
+  await act(async () => {
+    renderer = create(
+      <Year {...props} />
+    );
+  });
+
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('Year', () => {
   it('should render', () => {
-    expect(wrapper.text()).toEqual('2019');
+    expect(instance).toBeTruthy();
+  });
+
+  it('should render the year', async () => {
+    expect(instance.children).toEqual([`${props.date.getFullYear()}`]);
   });
 });

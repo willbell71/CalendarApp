@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { ICalendarService } from '../services/calendar/icalendar-service';
 import { DayEvent } from './day-event/day-event';
@@ -19,63 +19,61 @@ export type TProps = {
 /**
  * Day page component.
  */
-export class DayPage extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    // get row titles
-    const times: string[] = this.props.calendarService.getTimeNames();
+export const DayPage: FC<TProps> = ({ calendarService, date, today }: TProps): JSX.Element => {
+  // get row titles
+  const times: string[] = calendarService.getTimeNames();
 
-    // is it the weekend
-    const isWeekend: boolean = (0 === this.props.date.getDay() || 6 === this.props.date.getDay());
+  // is it the weekend
+  const isWeekend: boolean = (0 === date.getDay() || 6 === date.getDay());
 
-    return (
+  return (
+    <div
+      className="day-page"
+    >
       <div
-        className="day-page"
-      >
-        <div
-          className="day-page__times">
-          {times.map((time: string, index: number) => {
-            const now: boolean = this.props.today.getHours() === index - 1;
+        className="day-page__times">
+        {times.map((time: string, index: number) => {
+          const now: boolean = today.getHours() === index - 1;
 
-            return (
-              <div
-                key={ index }
-                className="day-page__times-row"
-              >
-                <p
-                  className={ `day-page__time ${now ? 'day-page__time--now' : ''}` }
-                >{ time }</p>
-                <div
-                  className={ `day-page__cell ${isWeekend ? 'day-page__cell--weekend' : ''} ${now ? 'day-page__cell--now' : ''}` }
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div
-          className="day-page__event"
-        >
-          <div>
+          return (
             <div
-              className="day-page__event-month"
+              key={ index }
+              className="day-page__times-row"
             >
-              <Month
-                calendarService={ this.props.calendarService }
-                date={ this.props.date }
-                today={ this.props.today }
+              <p
+                className={ `day-page__time ${now ? 'day-page__time--now' : ''}` }
+                data-testid="day-page-time"
+              >
+                { time }
+              </p>
+              <div
+                className={ `day-page__cell ${isWeekend ? 'day-page__cell--weekend' : ''} ${now ? 'day-page__cell--now' : ''}` }
+                data-testid="day-page-weekend"
               />
             </div>
-            <DayEvent
-              calendarService={ this.props.calendarService }
-              date={ this.props.date }
-              today={ this.props.today }
+          );
+        })}
+      </div>
+      <div
+        className="day-page__event"
+      >
+        <div>
+          <div
+            className="day-page__event-month"
+          >
+            <Month
+              calendarService={ calendarService }
+              date={ date }
+              today={ today }
             />
-          </div>            
+          </div>
+          <DayEvent
+            calendarService={ calendarService }
+            date={ date }
+            today={ today }
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

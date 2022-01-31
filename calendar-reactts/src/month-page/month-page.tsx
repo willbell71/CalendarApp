@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { ICalendarService } from '../services/calendar/icalendar-service';
 
@@ -19,61 +19,60 @@ export type TProps = {
 /**
  * Month page component.
  */
-export class MonthPage extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    const calendarDate: Date = this.props.calendarService.getStartOfMonthGridDate(this.props.date);
+export const MonthPage: FC<TProps> = ({ calendarService, date, today }: TProps): JSX.Element => {
+  const calendarDate: Date = calendarService.getStartOfMonthGridDate(date);
 
-    const days: string[] = this.props.calendarService.getDayColumnLongTitle();
-    const dates: string[] = [...days, ...days, ...days, ...days, ...days, ...days];
+  const days: string[] = calendarService.getDayColumnLongTitle();
+  const dates: string[] = [...days, ...days, ...days, ...days, ...days, ...days];
 
-    return (
-      <div className="month-page">
-        {days.map((day: string, index: number) => (
-          <p
+  return (
+    <div className="month-page">
+      {days.map((day: string, index: number) => (
+        <p
+          key={ index }
+          className="month-page__date"
+          data-testid="month-page-day"
+        >{ day }</p>
+      ))}
+
+      {dates.map((d: string, index: number) => {
+        const classes: string[] = ['month-page__cell'];
+        if (d === 'Sat' || d === 'Sun') {
+          classes.push('month-page__cell--weekend');
+        }
+        if (calendarDate.getMonth() !== date.getMonth()) {
+          classes.push('month-page__cell--dead');
+        }
+
+        const dateClasses: string[] = ['month-page__cell-date'];
+        if (today.getDate() === calendarDate.getDate() &&
+            today.getMonth() === calendarDate.getMonth() &&
+            today.getFullYear() === calendarDate.getFullYear()) {
+          dateClasses.push('month-page__cell-date--today');
+        }
+
+        // TODO - add events to date
+        const elem: JSX.Element = (
+          <div
             key={ index }
-            className="month-page__date"
-          >{ day }</p>
-        ))}
-
-        {dates.map((date: string, index: number) => {
-          const classes: string[] = ['month-page__cell'];
-          if (date === 'Sat' || date === 'Sun') {
-            classes.push('month-page__cell--weekend');
-          }
-          if (calendarDate.getMonth() !== this.props.date.getMonth()) {
-            classes.push('month-page__cell--dead');
-          }
-
-          const dateClasses: string[] = ['month-page__cell-date'];
-          if (this.props.today.getDate() === calendarDate.getDate() &&
-              this.props.today.getMonth() === calendarDate.getMonth() &&
-              this.props.today.getFullYear() === calendarDate.getFullYear()) {
-            dateClasses.push('month-page__cell-date--today');
-          }
-
-          // TODO - add events to date
-          const elem: JSX.Element = (
-            <div
-              key={ index }
-              className={ classes.join(' ') }
+            className={ classes.join(' ') }
+            data-testid="month-page-date-container"
+          >
+            <p
+              className={ dateClasses.join(' ') }
+              data-testid="month-page-date"
             >
-              <p
-                className={ dateClasses.join(' ') }
-              >{ calendarDate.getDate() }</p>
-              {/* <p>New Event</p>
-              <p>2 more...</p> */}
-            </div>
-          );
+              { calendarDate.getDate() }
+            </p>
+            {/* <p>New Event</p>
+            <p>2 more...</p> */}
+          </div>
+        );
 
-          calendarDate.setDate(calendarDate.getDate() + 1);
+        calendarDate.setDate(calendarDate.getDate() + 1);
 
-          return elem;
-        })}
-      </div>
-    );
-  }
-}
+        return elem;
+      })}
+    </div>
+  );
+};

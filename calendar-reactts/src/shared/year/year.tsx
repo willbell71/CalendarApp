@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 /**
  * Component properties.
@@ -11,14 +11,6 @@ export type TProps = {
 /**
  * Year component.
  */
-export class Year extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <>{ this.props.date.getFullYear() }</>
-    );
-  }
-}
+export const Year: FC<TProps> = ({ date }: TProps): JSX.Element => (
+  <>{ date.getFullYear() }</>
+);

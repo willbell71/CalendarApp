@@ -1,24 +1,28 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { Search, TProps } from './search';
 
-enzyme.configure({ adapter: new Adapter() });
-
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<{}, {}, Search>;
-beforeEach(() => {
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
   props = {
     search: jest.fn()
   };
 
-  wrapper = enzyme.shallow(<Search {...props}/>);
+  await act(async () => {
+    renderer = create(
+      <Search { ...props } />
+    );
+  });
+
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('Search', () => {
   it('should render', () => {
-    expect(wrapper.find('input').length).toEqual(1);
+    expect(instance).toBeTruthy();
   });
 });

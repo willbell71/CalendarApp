@@ -1,24 +1,32 @@
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { act, create, ReactTestInstance, ReactTestRenderer } from 'react-test-renderer';
 
 import { DayOfMonth, TProps } from './day-of-month';
 
-enzyme.configure({ adapter: new Adapter() });
-
 let props: TProps;
-let wrapper: enzyme.ShallowWrapper<{}, {}, DayOfMonth>;
-beforeEach(() => {
+let renderer: ReactTestRenderer;
+let instance: ReactTestInstance;
+beforeEach(async () => {
   props = {
     date: new Date(2019, 8, 28)
   };
 
-  wrapper = enzyme.shallow(<DayOfMonth {...props}/>);
+  await act(async () => {
+    renderer = create(
+      <DayOfMonth { ...props } />
+    );
+  });
+
+  instance = renderer.root;
 });
 afterEach(() => jest.restoreAllMocks());
 
 describe('DayOfMonth', () => {
   it('should render', () => {
-    expect(wrapper.text()).toEqual('28');
+    expect(instance).toBeTruthy();
+  });
+
+  it('should render the day', () => {
+    expect(instance.children).toEqual(['28']);
   });
 });

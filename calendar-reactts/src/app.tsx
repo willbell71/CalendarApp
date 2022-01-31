@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as reactDOM from 'react-dom';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import reactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { CalendarService } from './services/calendar/calendar-service';
 import { DayPage } from './day-page/day-page';
@@ -51,47 +51,47 @@ class App extends React.Component<{}, TState> {
     this.setState({
       date: new Date()
     });
-  }
+  };
 
   /**
    * Next date.
    * @param {EPeriod} period - period to skip forward.
    */
   private nextDate: (period: EPeriod) => void = (period: EPeriod): void => {
-    const date: Date = this.state.date;
+    this.setState(({ date }: { date: Date }) => {
+      switch (period) {
+        case EPeriod.eDay: date.setDate(date.getDate() + 1); break;
+        case EPeriod.eWeek: date.setDate(date.getDate() + 7); break;
+        case EPeriod.eMonth: date.setMonth(date.getMonth() + 1); break;
+        case EPeriod.eYear: date.setFullYear(date.getFullYear() + 1); break;
+        default: break;
+      }
 
-    switch (period) {
-      case EPeriod.eDay: date.setDate(date.getDate() + 1); break;
-      case EPeriod.eWeek: date.setDate(date.getDate() + 7); break;
-      case EPeriod.eMonth: date.setMonth(date.getMonth() + 1); break;
-      case EPeriod.eYear: date.setFullYear(date.getFullYear() + 1); break;
-      default: break;
-    }
-
-    this.setState({
-      date
+      return {
+        date
+      };
     });
-  }
+  };
 
   /**
    * Previous date.
    * @param {EPeriod} period - period to skip back.
    */
   private prevDate: (period: EPeriod) => void = (period: EPeriod): void => {
-    const date: Date = this.state.date;
+    this.setState(({ date }: { date: Date }) => {
+      switch (period) {
+        case EPeriod.eDay: date.setDate(date.getDate() - 1); break;
+        case EPeriod.eWeek: date.setDate(date.getDate() - 7); break;
+        case EPeriod.eMonth: date.setMonth(date.getMonth() - 1); break;
+        case EPeriod.eYear: date.setFullYear(date.getFullYear() - 1); break;
+        default: break;
+      }
 
-    switch (period) {
-      case EPeriod.eDay: date.setDate(date.getDate() - 1); break;
-      case EPeriod.eWeek: date.setDate(date.getDate() - 7); break;
-      case EPeriod.eMonth: date.setMonth(date.getMonth() - 1); break;
-      case EPeriod.eYear: date.setFullYear(date.getFullYear() - 1); break;
-      default: break;
-    }
-
-    this.setState({
-      date
+      return {
+        date
+      };
     });
-  }
+  };
 
   /**
    * Render day component.
@@ -119,7 +119,7 @@ class App extends React.Component<{}, TState> {
         />
       </>
     );
-  }
+  };
 
   /**
    * Render week component.
@@ -147,7 +147,7 @@ class App extends React.Component<{}, TState> {
         />
       </>
     );
-  }
+  };
 
   /**
    * Render month component.
@@ -175,7 +175,7 @@ class App extends React.Component<{}, TState> {
         />
       </>
     );
-  }
+  };
 
   /**
    * Render year component.
@@ -203,7 +203,7 @@ class App extends React.Component<{}, TState> {
         />
       </>
     );
-  }
+  };
 
   /**
    * Render.
@@ -222,33 +222,27 @@ class App extends React.Component<{}, TState> {
           role="main"
           className="app__container"
         >
-          <Switch>
+          <Routes>
             <Route
               path="/day"
-              exact
-              component={this.dayPageComponent}
+              element={this.dayPageComponent()}
             />
 
             <Route
               path="/week"
-              component={this.weekPageComponent}
+              element={this.weekPageComponent()}
             />
 
             <Route
               path="/month"
-              component={this.monthPageComponent}
+              element={this.monthPageComponent()}
             />
 
             <Route
               path="/year"
-              component={this.yearPageComponent}
+              element={this.yearPageComponent()}
             />
-
-            <Redirect
-              from="*"
-              to="/year"
-            />
-          </Switch>
+          </Routes>
         </div>
       </BrowserRouter>
     );

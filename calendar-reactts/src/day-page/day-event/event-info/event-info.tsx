@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import './styles.scss';
 
@@ -27,6 +27,7 @@ export class EventInfo extends React.Component<{}, TState> {
     return (
       <div
         className="event-info__open"
+        data-testid="event-info-open"
       >
         <input
           className="event-info__open-event-input"
@@ -53,7 +54,7 @@ export class EventInfo extends React.Component<{}, TState> {
    */
   private renderClosed(): JSX.Element {
     return (
-      <div>
+      <div data-testid="event-info-closed">
         <p className="event-info__closed-caption">Add Notes, URL or Attachments</p>
       </div>
     );
@@ -74,7 +75,7 @@ export class EventInfo extends React.Component<{}, TState> {
    */
   public render(): JSX.Element {
     return (
-      <div className="event-info" onClick={ this.toggle }>
+      <div className="event-info" onClick={ this.toggle } data-testid="event-info">
         { this.state.open ? this.renderOpen() : this.renderClosed() }
       </div>
     );

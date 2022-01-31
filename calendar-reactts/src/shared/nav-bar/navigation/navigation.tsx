@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.scss';
@@ -6,34 +6,38 @@ import './styles.scss';
 /**
  * Navigation component.
  */
-export class Navigation extends React.Component {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <div className="navigation__control-group">
-        <Link
-          to="/day"
-          className="button button--big"
-        >Day</Link>
+export const Navigation: FC = (): JSX.Element => (
+  <div className="navigation__control-group">
+    <Link
+      to="/day"
+      className="button button--big"
+      data-testid="navigation-day"
+    >
+      Day
+    </Link>
 
-        <Link
-          to="/week"
-          className="button button--big"
-        >Week</Link>
+    <Link
+      to="/week"
+      className="button button--big"
+      data-testid="navigation-week"
+    >
+      Week
+    </Link>
 
-        <Link
-          to="/month"
-          className="button button--big"
-        >Month</Link>
+    <Link
+      to="/month"
+      className="button button--big"
+      data-testid="navigation-month"
+    >
+      Month
+    </Link>
 
-        <Link
-          to="/year"
-          className="button button--big"
-        >Year</Link>
-      </div>
-    );
-  }
-}
+    <Link
+      to="/year"
+      className="button button--big"
+      data-testid="navigation-year"
+    >
+      Year
+    </Link>
+  </div>
+);

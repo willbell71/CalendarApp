@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 /**
  * Component properties.
@@ -11,14 +11,6 @@ export type TProps = {
 /**
  * Day of month component.
  */
-export class DayOfMonth extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <>{ this.props.date.getDate() }</>
-    );
-  }
-}
+export const DayOfMonth: FC<TProps> = ({ date }: TProps): JSX.Element => (
+  <>{ date.getDate() }</>
+);

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { Navigation } from './navigation/navigation';
 import { Search } from './search/search';
@@ -20,40 +20,39 @@ export type TProps = {
 /**
  * Nav Bar component.
  */
-export class NavBar extends React.Component<TProps> {
-  /**
-   * Component render.
-   * @return {JSX.Element} component rendner.
-   */
-  public render(): JSX.Element {
-    return (
-      <header
-        className="nav-bar"
+export const NavBar: FC<TProps> = ({ calendars, add, search }: TProps): JSX.Element => (
+  <header
+    className="nav-bar"
+  >
+    <div className="nav-bar__control-group">
+      <button
+        onClick={ calendars }
+        className="button button--big"
+        data-testid="nav-bar-button-calendars"
       >
-        <div className="nav-bar__control-group">
-          <button
-            onClick={ this.props.calendars }
-            className="button button--big"
-          >Calendars</button>
+        Calendars
+      </button>
 
-          <button
-            onClick={ this.props.add }
-            className="button button--big"
-          >+</button>
-        </div>
+      <button
+        onClick={ add }
+        className="button button--big"
+        data-testid="nav-bar-button-add"
+      >
+        +
+      </button>
+    </div>
 
-        <div className="nav-bar__spacer"/>
+    <div className="nav-bar__spacer"/>
 
-        <Navigation/>
+    <Navigation/>
 
-        <div
-          className="nav-bar__spacer"
-        />
+    <div
+      className="nav-bar__spacer"
+    />
 
-        <Search
-          search={ this.props.search }
-        />
-      </header>
-    );
-  }
-}
+    <Search
+      search={ search }
+      data-testid="nav-bar-search"
+    />
+  </header>
+);

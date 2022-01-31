@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TimePicker } from './time-picker/time-picker';
 
@@ -41,7 +41,7 @@ export class EventTime extends React.Component<TProps, TState> {
    */
   private renderOpen(): JSX.Element {
     return (
-      <div className="event-time__open">
+      <div className="event-time__open" data-testid="event-time-open">
         <p className="event-time__open-title">all-day:</p>
         <input
           className="event-time__open-checkbox"
@@ -130,7 +130,7 @@ export class EventTime extends React.Component<TProps, TState> {
    */
   private renderClosed(): JSX.Element {
     return (
-      <div>
+      <div data-testid="event-time-closed">
         <div className="event-time__closed">
           <p>Monday 7 Oct</p>
           <p>16:00 to 17:00</p>
@@ -155,7 +155,7 @@ export class EventTime extends React.Component<TProps, TState> {
    */
   public render(): JSX.Element {
     return (
-      <div className="event-time" onClick={ this.toggle }>
+      <div className="event-time" onClick={ this.toggle } data-testid="event-time">
         { this.state.open ? this.renderOpen() : this.renderClosed() }
       </div>
     );
